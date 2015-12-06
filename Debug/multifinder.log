@@ -1,18 +1,261 @@
-﻿Build started 2015-12-04 오전 10:22:58.
-     1>Project "E:\ParkJunha\Project\multifinder\multifinder\multifinder.vcxproj" on node 2 (Build target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt /D "DEBUG" main.cpp
+﻿빌드 시작: 2015-12-06 오전 10:51:47
+     1>2 노드의 "D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트(Build 대상)입니다.
+     1>도구 버전 "12.0"(을)를 사용하여 빌드하고 있습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" 파일에 있는 "_CheckForInvalidConfigurationAndPlatform" 대상(진입점):
+       조건이 잘못되어 "Error" 작업을 건너뜁니다. ( '$(_InvalidConfigurationError)' == 'true' )이(가) ( '' == 'true' )(으)로 확인되었습니다.
+       조건이 잘못되어 "Warning" 작업을 건너뜁니다. ( '$(_InvalidConfigurationWarning)' == 'true' )이(가) ( '' == 'true' )(으)로 확인되었습니다.
+       "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" 어셈블리에서 "Message" 작업을 사용합니다.
+       "Message" 작업
+         Configuration=Debug
+       "Message" 작업을 실행했습니다.
+       "Message" 작업
+         Platform=Win32
+       "Message" 작업을 실행했습니다.
+       조건이 잘못되어 "Error" 작업을 건너뜁니다. ('$(OutDir)' != '' and !HasTrailingSlash('$(OutDir)'))이(가) ('D:\engine\PJHEngine\PJHEngine\Debug\' != '' and !HasTrailingSlash('D:\engine\PJHEngine\PJHEngine\Debug\'))(으)로 확인되었습니다.
+       조건이 잘못되어 "Error" 작업을 건너뜁니다. ('$(BaseIntermediateOutputPath)' != '' and !HasTrailingSlash('$(BaseIntermediateOutputPath)'))이(가) ('obj\' != '' and !HasTrailingSlash('obj\'))(으)로 확인되었습니다.
+       조건이 잘못되어 "Error" 작업을 건너뜁니다. ('$(IntermediateOutputPath)' != '' and !HasTrailingSlash('$(IntermediateOutputPath)'))이(가) ('Debug\' != '' and !HasTrailingSlash('Debug\'))(으)로 확인되었습니다.
+     1>"multifinder.vcxproj" 프로젝트에 "_CheckForInvalidConfigurationAndPlatform" 대상을 빌드했습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.BuildSteps.Targets" 파일에 있는 "_PrepareForBuild" 대상("Build" 대상이 종속됨):
+       조건이 잘못되어 "CreateItem" 작업을 건너뜁니다. ('%(CustomBuild.IncludeFileToTool)'!='')이(가) (''!='')(으)로 확인되었습니다.
+     1>"multifinder.vcxproj" 프로젝트에 "_PrepareForBuild" 대상을 빌드했습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets" 파일에 있는 "_PrepareForReferenceResolution" 대상("ResolveReferences" 대상이 종속됨):
+       조건이 잘못되어 "Message" 작업을 건너뜁니다. ('$(_REFERENCE_DEBUG)'=='true')이(가) (''=='true')(으)로 확인되었습니다.
+     1>"multifinder.vcxproj" 프로젝트에 "_PrepareForReferenceResolution" 대상을 빌드했습니다.
+       조건이 잘못되어 "ComputeCrtSDKReference" 대상을 건너뜁니다. ('@(ClCompile)'!='' and '$(WindowsAppContainer)'=='true' and '$(UseCrtSDKReference)' != 'false')이(가) ('main.cpp;PJH_File.cpp;PJH_FileImpl.cpp;PJH_Filesystem.cpp;PJH_SubFilesystem.cpp;PJH_Thread.cpp'!='' and 'false'=='true' and '' != 'false')(으)로 확인되었습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" 파일에 있는 "BeforeResolveReferences" 대상("ResolveReferences" 대상이 종속됨):
+     1>"multifinder.vcxproj" 프로젝트에 "BeforeResolveReferences" 대상을 빌드했습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" 파일에 있는 "AssignProjectConfiguration" 대상("ResolveReferences" 대상이 종속됨):
+       "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" 어셈블리에서 "AssignProjectConfiguration" 작업을 사용합니다.
+       "AssignProjectConfiguration" 작업
+       "AssignProjectConfiguration" 작업을 실행했습니다.
+     1>"multifinder.vcxproj" 프로젝트에 "AssignProjectConfiguration" 대상을 빌드했습니다.
+       "AssignProjectConfiguration" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" 파일에 있는 "_SplitProjectReferencesByFileExistence" 대상("ResolveProjectReferences" 대상이 종속됨):
+       조건이 잘못되어 "ResolveNonMSBuildProjectOutput" 작업을 건너뜁니다. ('$(BuildingInsideVisualStudio)'=='true' and '@(ProjectReferenceWithConfiguration)'!='')이(가) ('true'=='true' and ''!='')(으)로 확인되었습니다.
+     1>"multifinder.vcxproj" 프로젝트에 "_SplitProjectReferencesByFileExistence" 대상을 빌드했습니다.
+       조건이 잘못되어 "_RemoveNameMetadataFromProjectReferenceItems" 대상을 건너뜁니다. ('@(ProjectReference)'!='')이(가) (''!='')(으)로 확인되었습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" 파일에 있는 "ResolveProjectReferences" 대상("ResolveReferences" 대상이 종속됨):
+       조건이 잘못되어 "MSBuild" 작업을 건너뜁니다. ('%(_MSBuildProjectReferenceExistent.BuildReference)' == 'true' and '@(ProjectReferenceWithConfiguration)' != '' and ('$(BuildingInsideVisualStudio)' == 'true' or '$(BuildProjectReferences)' != 'true') and '$(VisualStudioVersion)' != '10.0' and '@(_MSBuildProjectReferenceExistent)' != '')이(가) ('' == 'true' and '' != '' and ('true' == 'true' or 'true' != 'true') and '12.0' != '10.0' and '' != '')(으)로 확인되었습니다.
+       조건이 잘못되어 "MSBuild" 작업을 건너뜁니다. ('%(_MSBuildProjectReferenceExistent.BuildReference)' == 'true' and '@(ProjectReferenceWithConfiguration)' != '' and ('$(BuildingInsideVisualStudio)' == 'true' or '$(BuildProjectReferences)' != 'true') and '$(VisualStudioVersion)' == '10.0' and '@(_MSBuildProjectReferenceExistent)' != '')이(가) ('' == 'true' and '' != '' and ('true' == 'true' or 'true' != 'true') and '12.0' == '10.0' and '' != '')(으)로 확인되었습니다.
+       조건이 잘못되어 "MSBuild" 작업을 건너뜁니다. ('%(_MSBuildProjectReferenceExistent.BuildReference)' == 'true' and '@(ProjectReferenceWithConfiguration)' != '' and '$(BuildingInsideVisualStudio)' != 'true' and '$(BuildProjectReferences)' == 'true' and '@(_MSBuildProjectReferenceExistent)' != '')이(가) ('' == 'true' and '' != '' and 'true' != 'true' and 'true' == 'true' and '' != '')(으)로 확인되었습니다.
+       조건이 잘못되어 "MSBuild" 작업을 건너뜁니다. ('%(_MSBuildProjectReferenceExistent.BuildReference)' == 'true' and '@(ProjectReferenceWithConfiguration)' != '' and '$(BuildingProject)' == 'true' and '@(_MSBuildProjectReferenceExistent)' != '')이(가) ('' == 'true' and '' != '' and 'true' == 'true' and '' != '')(으)로 확인되었습니다.
+       조건이 잘못되어 "Warning" 작업을 건너뜁니다. ('@(ProjectReferenceWithConfiguration)' != '' and '@(_MSBuildProjectReferenceNonexistent)' != '')이(가) ('' != '' and '' != '')(으)로 확인되었습니다.
+     1>"multifinder.vcxproj" 프로젝트에 "ResolveProjectReferences" 대상을 빌드했습니다.
+       조건이 잘못되어 "FindInvalidProjectReferences" 대상을 건너뜁니다. ('$(FindInvalidProjectReferences)' == 'true')이(가) ('' == 'true')(으)로 확인되었습니다.
+       조건이 잘못되어 "ResolveNativeReferences" 대상을 건너뜁니다. ('@(NativeReference)'!='')이(가) (''!='')(으)로 확인되었습니다.
+       "_PrepareForReferenceResolution" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.NetFramework.CurrentVersion.targets" 파일에 있는 "GetFrameworkPaths" 대상("ResolveAssemblyReferences" 대상이 종속됨):
+     1>"multifinder.vcxproj" 프로젝트에 "GetFrameworkPaths" 대상을 빌드했습니다.
+       조건이 잘못되어 "GetWinFXPath" 대상을 건너뜁니다. (('@(Page)' != '' or '@(ApplicationDefinition)' != '' or '@(Resource)' != '') and ('$(GetWinFXNativePath)' != '' or '$(GetWinFXWoWPath)' != '' ))이(가) (('' != '' or '' != '' or '' != '') and ('' != '' or '' != '' ))(으)로 확인되었습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" 파일에 있는 "GetReferenceAssemblyPaths" 대상("ResolveAssemblyReferences" 대상이 종속됨):
+       조건이 잘못되어 "GetReferenceAssemblyPaths" 작업을 건너뜁니다. ('$(TargetFrameworkMoniker)' != '' and ('$(_TargetFrameworkDirectories)' == '' or '$(_FullFrameworkReferenceAssemblyPaths)' == ''))이(가) ('' != '' and ('C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0' == '' or 'C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0' == ''))(으)로 확인되었습니다.
+     1>"multifinder.vcxproj" 프로젝트에 "GetReferenceAssemblyPaths" 대상을 빌드했습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.Cpp.targets" 파일에 있는 "SetBuildDefaultEnvironmentVariables" 대상("PrepareForBuild" 대상이 종속됨):
+       "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.Build.CppTasks.Common.dll" 어셈블리에서 "SetEnv" 작업을 사용합니다.
+       "SetEnv" 작업
+         PATH=C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin;C:\Program Files (x86)\Windows Kits\8.1\bin\x86;;C:\Program Files (x86)\Microsoft SDKs\Windows\v8.1A\bin\NETFX 4.5.1 Tools;C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\Tools\bin;C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\tools;C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\ide;C:\Program Files (x86)\HTML Help Workshop;;C:\Program Files (x86)\MSBuild\12.0\bin\;C:\Windows\Microsoft.NET\Framework\v4.0.30319\;C:\Windows\SysWow64;;C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE\CommonExtensions\Microsoft\TeamFoundation\Team Explorer\NativeBinaries/x86;C:\Python27\;C:\Python27\Scripts;C:\Program Files (x86)\Wizvera\Delfino;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files (x86)\it\cmd;C:\Program Files (x86)\Vim\vim74\;C:\Program Files (x86)\Git\bin\;E:\cmd_shortcuts\;C:\Program Files\Sublime Text 3\;D:\Reversing\tool\al_al;C:\Users\devJunpark\AppData\Local\nasm\;D:\Reversing\tool\upx391w\upx391w\;C:\Program Files (x86)\PuTTY\;C:\Program Files\Microsoft Windows Performance Toolkit\;;
+       "SetEnv" 작업을 실행했습니다.
+       "SetEnv" 작업
+         LIB=C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\lib;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\atlmfc\lib;C:\Program Files (x86)\Windows Kits\8.1\lib\winv6.3\um\x86;;
+       "SetEnv" 작업을 실행했습니다.
+       "SetEnv" 작업
+         LIBPATH=C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\atlmfc\lib;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\lib;
+       "SetEnv" 작업을 실행했습니다.
+       "SetEnv" 작업
+         INCLUDE=C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\include;C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\atlmfc\include;C:\Program Files (x86)\Windows Kits\8.1\Include\um;C:\Program Files (x86)\Windows Kits\8.1\Include\shared;C:\Program Files (x86)\Windows Kits\8.1\Include\winrt;;
+       "SetEnv" 작업을 실행했습니다.
+     1>"multifinder.vcxproj" 프로젝트에 "SetBuildDefaultEnvironmentVariables" 대상을 빌드했습니다.
+       조건이 잘못되어 "SetUserMacroEnvironmentVariables" 대상을 건너뜁니다. ('@(BuildMacro)' != '')이(가) ('' != '')(으)로 확인되었습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets" 파일에 있는 "GetResolvedWinMD" 대상("PrepareForBuild" 대상이 종속됨):
+     1>"multifinder.vcxproj" 프로젝트에 "GetResolvedWinMD" 대상을 빌드했습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.Cpp.Platform.targets" 파일에 있는 "PlatformPrepareForBuild" 대상("PrepareForBuild" 대상이 종속됨):
+       조건이 잘못되어 "VCMessage" 작업을 건너뜁니다. ('$(_Error64bitToolsNotInstalled)' == 'true')이(가) ('' == 'true')(으)로 확인되었습니다.
+       조건이 잘못되어 "VCMessage" 작업을 건너뜁니다. ('$(ConfigurationPlatformExists)' != 'true')이(가) ('true' != 'true')(으)로 확인되었습니다.
+       조건이 잘못되어 "VCMessage" 작업을 건너뜁니다. ('$(ToolsetTargetsFound)' != 'true')이(가) ('true' != 'true')(으)로 확인되었습니다.
+     1>"multifinder.vcxproj" 프로젝트에 "PlatformPrepareForBuild" 대상을 빌드했습니다.
+       "GetFrameworkPaths" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+       "GetReferenceAssemblyPaths" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft\VisualStudio\v12.0\CodeAnalysis\Microsoft.CodeAnalysis.targets" 파일에 있는 "SetCABuildNativeEnvironmentVariables" 대상("PrepareForBuild" 대상이 종속됨):
+       "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Build.Tasks.v12.0.dll" 어셈블리에서 "CodeTaskFactory" 작업 팩터리를 초기화하고 있습니다.
+       "Code Task Factory" 작업 팩터리에서 "SetEnvironmentVariable" 작업을 사용합니다.
+       "SetEnvironmentVariable" 작업
+       "SetEnvironmentVariable" 작업을 실행했습니다.
+     1>"multifinder.vcxproj" 프로젝트에 "SetCABuildNativeEnvironmentVariables" 대상을 빌드했습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets" 파일에 있는 "PrepareForBuild" 대상("ResolveAssemblyReferences" 대상이 종속됨):
+       조건이 잘못되어 "VCMessage" 작업을 건너뜁니다. ('$(DesignTimeBuild)' != 'true' and '$(ConfigurationPlatformExists)' != 'true')이(가) ('' != 'true' and 'true' != 'true')(으)로 확인되었습니다.
+       "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" 어셈블리에서 "MakeDir" 작업을 사용합니다.
+       "MakeDir" 작업
+       "MakeDir" 작업을 실행했습니다.
+       조건이 잘못되어 "VCMessage" 작업을 건너뜁니다. ('$(DesignTimeBuild)'!='true' and '$(WindowsAppContainer)'=='true' and '$(ConfigurationType)'!='Application' and '$(ConfigurationType)'!='DynamicLibrary' and '$(ConfigurationType)'!='StaticLibrary')이(가) (''!='true' and 'false'=='true' and 'Application'!='Application' and 'Application'!='DynamicLibrary' and 'Application'!='StaticLibrary')(으)로 확인되었습니다.
+       조건이 잘못되어 "VCMessage" 작업을 건너뜁니다. ('$(DesignTimeBuild)'!='true' and '$(VCInstallDir)'=='' and '$(UseEnv)' != 'true' and ('$(TargetFrameworkVersion)'=='v3.5' or '$(TargetFrameworkVersion)'=='v3.0' or '$(TargetFrameworkVersion)'=='v2.0' ))이(가) (''!='true' and 'C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\'=='' and '' != 'true' and ('v4.0'=='v3.5' or 'v4.0'=='v3.0' or 'v4.0'=='v2.0' ))(으)로 확인되었습니다.
+       조건이 잘못되어 "VCMessage" 작업을 건너뜁니다. ('$(DesignTimeBuild)'!='true' and '$(VCInstallDir)'=='' and '$(UseEnv)' != 'true' and '$(PlatformToolset)'=='v90')이(가) (''!='true' and 'C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\'=='' and '' != 'true' and 'v120'=='v90')(으)로 확인되었습니다.
+       조건이 잘못되어 "VCMessage" 작업을 건너뜁니다. ('$(VCInstallDir)'=='' and '$(UseEnv)' != 'true')이(가) ('C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\'=='' and '' != 'true')(으)로 확인되었습니다.
+       조건이 잘못되어 "VCMessage" 작업을 건너뜁니다. ('$(WindowsSDKDir)'=='' and '$(UseEnv)' != 'true')이(가) ('C:\Program Files (x86)\Windows Kits\8.1\'=='' and '' != 'true')(으)로 확인되었습니다.
+       조건이 잘못되어 "VCMessage" 작업을 건너뜁니다. ('$(IntDirTrailingSlashWarning)'=='true')이(가) (''=='true')(으)로 확인되었습니다.
+       조건이 잘못되어 "VCMessage" 작업을 건너뜁니다. ('$(OutDirTrailingSlashWarning)'=='true')이(가) (''=='true')(으)로 확인되었습니다.
+       조건이 잘못되어 "VCMessage" 작업을 건너뜁니다. ('%(CompatibilityIssues.Identity)' != '' and '$(DesignTimeBuild)'!='true')이(가) ('' != '' and ''!='true')(으)로 확인되었습니다.
+       조건이 잘못되어 "VCMessage" 작업을 건너뜁니다. ('$(_MBCS_Using)' == 'true' and '$(_MBCS_Installed)' != 'true' and '$(DesignTimeBuild)' != 'true')이(가) ('' == 'true' and '' != 'true' and '' != 'true')(으)로 확인되었습니다.
+       조건이 잘못되어 "VCMessage" 작업을 건너뜁니다. ('$(IgnoreWarnIntDirSharingDetected)' != 'true' and '$(IntDirSharingDetected)' == 'true')이(가) ('' != 'true' and '' == 'true')(으)로 확인되었습니다.
+       조건이 잘못되어 "VCMessage" 작업을 건너뜁니다. ('$(IgnoreWarnIntDirInTempDetected)' != 'true' and ('$(_IntDirFullpath.StartsWith($(Tmp), true, null))' == 'true' or '$(_IntDirFullpath.StartsWith($(Temp), true, null))' == 'true' or '$(_OutDirFullpath.StartsWith($(Tmp), true, null))' == 'true' or '$(_OutDirFullpath.StartsWith($(Temp), true, null))' == 'true'))이(가) ('' != 'true' and ('False' == 'true' or 'False' == 'true' or 'False' == 'true' or 'False' == 'true'))(으)로 확인되었습니다.
+       "MakeDir" 작업
+       "MakeDir" 작업을 실행했습니다.
+     1>"multifinder.vcxproj" 프로젝트에 "PrepareForBuild" 대상을 빌드했습니다.
+       "_PrepareForReferenceResolution" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+       조건이 잘못되어 "ComputeCrtSDKReference" 대상을 건너뜁니다. ('@(ClCompile)'!='' and '$(WindowsAppContainer)'=='true' and '$(UseCrtSDKReference)' != 'false')이(가) ('main.cpp;PJH_File.cpp;PJH_FileImpl.cpp;PJH_Filesystem.cpp;PJH_SubFilesystem.cpp;PJH_Thread.cpp'!='' and 'false'=='true' and '' != 'false')(으)로 확인되었습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" 파일에 있는 "GetInstalledSDKLocations" 대상("ResolveSDKReferences" 대상이 종속됨):
+       조건이 잘못되어 "GetInstalledSDKLocations" 작업을 건너뜁니다. ('@(SDKReference)' != '')이(가) ('' != '')(으)로 확인되었습니다.
+     1>"multifinder.vcxproj" 프로젝트에 "GetInstalledSDKLocations" 대상을 빌드했습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" 파일에 있는 "ResolveSDKReferences" 대상("ResolveAssemblyReferences" 대상이 종속됨):
+       조건이 잘못되어 "ResolveSDKReference" 작업을 건너뜁니다. ('@(SDKReference)'!='')이(가) (''!='')(으)로 확인되었습니다.
+     1>"multifinder.vcxproj" 프로젝트에 "ResolveSDKReferences" 대상을 빌드했습니다.
+       "ResolveSDKReferences" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" 파일에 있는 "ExpandSDKReferences" 대상("ResolveAssemblyReferences" 대상이 종속됨):
+       조건이 잘못되어 "GetSDKReferenceFiles" 작업을 건너뜁니다. ('@(ResolvedSDKReference)'!='')이(가) (''!='')(으)로 확인되었습니다.
+     1>"multifinder.vcxproj" 프로젝트에 "ExpandSDKReferences" 대상을 빌드했습니다.
+       조건이 잘못되어 "FakesGenerateBeforeBuild" 대상을 건너뜁니다. (@(Fakes) != '' AND $(BuildingProject))이(가) ( != '' AND true)(으)로 확인되었습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" 파일에 있는 "ResolveAssemblyReferences" 대상("ResolveReferences" 대상이 종속됨):
+       조건이 잘못되어 "ResolveAssemblyReference" 작업을 건너뜁니다. ('@(Reference)'!='' or '@(_ResolvedProjectReferencePaths)'!='' or '@(_ExplicitReference)' != '')이(가) (''!='' or ''!='' or '' != '')(으)로 확인되었습니다.
+     1>"multifinder.vcxproj" 프로젝트에 "ResolveAssemblyReferences" 대상을 빌드했습니다.
+       조건이 잘못되어 "GenerateBindingRedirects" 대상을 건너뜁니다. ('$(AutoGenerateBindingRedirects)' == 'true' and '$(GenerateBindingRedirectsOutputType)' == 'true')이(가) ('' == 'true' and 'true' == 'true')(으)로 확인되었습니다.
+       조건이 잘못되어 "ResolveComReferences" 대상을 건너뜁니다. ('@(COMReference)'!='' or '@(COMFileReference)'!='')이(가) (''!='' or ''!='')(으)로 확인되었습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" 파일에 있는 "AfterResolveReferences" 대상("ResolveReferences" 대상이 종속됨):
+     1>"multifinder.vcxproj" 프로젝트에 "AfterResolveReferences" 대상을 빌드했습니다.
+       조건이 잘못되어 "ImplicitlyExpandDesignTimeFacades" 대상을 건너뜁니다. ('$(ImplicitlyExpandDesignTimeFacades)' == 'true')이(가) ('' == 'true')(으)로 확인되었습니다.
+       조건이 잘못되어 "ResolveTestReferences" 대상을 건너뜁니다. ('@(Shadow)'!='')이(가) (''!='')(으)로 확인되었습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" 파일에 있는 "ResolveReferences" 대상("Build" 대상이 종속됨):
+     1>"multifinder.vcxproj" 프로젝트에 "ResolveReferences" 대상을 빌드했습니다.
+       "PrepareForBuild" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+       "PrepareForBuild" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets" 파일에 있는 "InitializeBuildStatus" 대상("Build" 대상이 종속됨):
+       "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" 어셈블리에서 "ReadLinesFromFile" 작업을 사용합니다.
+       "ReadLinesFromFile" 작업
+       "ReadLinesFromFile" 작업을 실행했습니다.
+       "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" 어셈블리에서 "WriteLinesToFile" 작업을 사용합니다.
+       "WriteLinesToFile" 작업
+       "WriteLinesToFile" 작업을 실행했습니다.
+       "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" 어셈블리에서 "Touch" 작업을 사용합니다.
+       "Touch" 작업
+         "Debug\multifinder.tlog\unsuccessfulbuild"에 연결(touching)하고 있습니다.
+       "Touch" 작업을 실행했습니다.
+     1>"multifinder.vcxproj" 프로젝트에 "InitializeBuildStatus" 대상을 빌드했습니다.
+       "AssignProjectConfiguration" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+       "_SplitProjectReferencesByFileExistence" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" 파일에 있는 "BuildGenerateSourcesTraverse" 대상("BuildGenerateSources" 대상이 종속됨):
+       조건이 잘못되어 "MSBuild" 작업을 건너뜁니다. ('$(BuildPassReferences)' == 'true' and '@(ProjectReferenceWithConfiguration)' != '' and '@(_MSBuildProjectReferenceExistent)' != '' and '%(_MSBuildProjectReferenceExistent.BuildReference)' == 'true')이(가) ('' == 'true' and '' != '' and '' != '' and '' == 'true')(으)로 확인되었습니다.
+     1>"multifinder.vcxproj" 프로젝트에 "BuildGenerateSourcesTraverse" 대상을 빌드했습니다.
+       "PrepareForBuild" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+       "ResolveReferences" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.BuildSteps.Targets" 파일에 있는 "BeforeBuildGenerateSources" 대상("_BuildGenerateSourcesAction" 대상이 종속됨):
+     1>"multifinder.vcxproj" 프로젝트에 "BeforeBuildGenerateSources" 대상을 빌드했습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppCommon.targets" 파일에 있는 "PreBuildEvent" 대상("_BuildGenerateSourcesAction" 대상이 종속됨):
+       조건이 잘못되어 "Message" 작업을 건너뜁니다. ('%(PreBuildEvent.Message)' != '' and '%(PreBuildEvent.Command)' != '')이(가) ('' != '' and '' != '')(으)로 확인되었습니다.
+       조건이 잘못되어 "Exec" 작업을 건너뜁니다. ('%(PreBuildEvent.Command)' != '')이(가) ('' != '')(으)로 확인되었습니다.
+     1>"multifinder.vcxproj" 프로젝트에 "PreBuildEvent" 대상을 빌드했습니다.
+       조건이 잘못되어 "CustomBuild" 대상을 건너뜁니다. ('@(CustomBuild)' != '')이(가) ('' != '')(으)로 확인되었습니다.
+       조건이 잘못되어 "FxCompile" 대상을 건너뜁니다. ('@(FxCompile)' != '')이(가) ('' != '')(으)로 확인되었습니다.
+       조건이 잘못되어 "Xsd" 대상을 건너뜁니다. ('@(Xsd)' != '')이(가) ('' != '')(으)로 확인되었습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets" 파일에 있는 "_Xsd" 대상("_BuildGenerateSourcesAction" 대상이 종속됨):
+     1>"multifinder.vcxproj" 프로젝트에 "_Xsd" 대상을 빌드했습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets" 파일에 있는 "MakeDirsForMidl" 대상("_Midl" 대상이 종속됨):
+       "Makedir" 작업
+       "Makedir" 작업을 실행했습니다.
+     1>"multifinder.vcxproj" 프로젝트에 "MakeDirsForMidl" 대상을 빌드했습니다.
+       조건이 잘못되어 "Midl" 대상을 건너뜁니다. ('@(Midl)' != '')이(가) ('' != '')(으)로 확인되었습니다.
+       조건이 잘못되어 "CustomBuild" 대상을 건너뜁니다. ('@(CustomBuild)' != '')이(가) ('' != '')(으)로 확인되었습니다.
+       조건이 잘못되어 "FxCompile" 대상을 건너뜁니다. ('@(FxCompile)' != '')이(가) ('' != '')(으)로 확인되었습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets" 파일에 있는 "ComputeMIDLGeneratedCompileInputs" 대상("_Midl" 대상이 종속됨):
+     1>"multifinder.vcxproj" 프로젝트에 "ComputeMIDLGeneratedCompileInputs" 대상을 빌드했습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets" 파일에 있는 "AfterMidl" 대상("_Midl" 대상이 종속됨):
+     1>"multifinder.vcxproj" 프로젝트에 "AfterMidl" 대상을 빌드했습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets" 파일에 있는 "_Midl" 대상("_BuildGenerateSourcesAction" 대상이 종속됨):
+     1>"multifinder.vcxproj" 프로젝트에 "_Midl" 대상을 빌드했습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.BuildSteps.Targets" 파일에 있는 "AfterBuildGenerateSources" 대상("_BuildGenerateSourcesAction" 대상이 종속됨):
+     1>"multifinder.vcxproj" 프로젝트에 "AfterBuildGenerateSources" 대상을 빌드했습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets" 파일에 있는 "AfterBuildGenerateSourcesEvent" 대상("_BuildGenerateSourcesAction" 대상이 종속됨):
+     1>"multifinder.vcxproj" 프로젝트에 "AfterBuildGenerateSourcesEvent" 대상을 빌드했습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets" 파일에 있는 "_BuildGenerateSourcesAction" 대상("BuildGenerateSources" 대상이 종속됨):
+     1>"multifinder.vcxproj" 프로젝트에 "_BuildGenerateSourcesAction" 대상을 빌드했습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" 파일에 있는 "BuildGenerateSources" 대상("Build" 대상이 종속됨):
+     1>"multifinder.vcxproj" 프로젝트에 "BuildGenerateSources" 대상을 빌드했습니다.
+       "AssignProjectConfiguration" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+       "_SplitProjectReferencesByFileExistence" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" 파일에 있는 "BuildCompileTraverse" 대상("BuildCompile" 대상이 종속됨):
+       조건이 잘못되어 "MSBuild" 작업을 건너뜁니다. ('$(BuildPassReferences)' == 'true' and '@(ProjectReferenceWithConfiguration)' != '' and '@(_MSBuildProjectReferenceExistent)' != ''  and '%(_MSBuildProjectReferenceExistent.BuildReference)' == 'true')이(가) ('' == 'true' and '' != '' and '' != ''  and '' == 'true')(으)로 확인되었습니다.
+     1>"multifinder.vcxproj" 프로젝트에 "BuildCompileTraverse" 대상을 빌드했습니다.
+       "PrepareForBuild" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+       "ResolveReferences" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets" 파일에 있는 "BeforeClCompile" 대상("_ClCompile" 대상이 종속됨):
+     1>"multifinder.vcxproj" 프로젝트에 "BeforeClCompile" 대상을 빌드했습니다.
+       "ComputeMIDLGeneratedCompileInputs" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets" 파일에 있는 "ComputeCLInputPDBName" 대상("_ClCompile" 대상이 종속됨):
+     1>"multifinder.vcxproj" 프로젝트에 "ComputeCLInputPDBName" 대상을 빌드했습니다.
+       "ResolveReferences" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets" 파일에 있는 "ComputeReferenceCLInput" 대상("_ClCompile" 대상이 종속됨):
+       조건이 잘못되어 "WriteLinesToFile" 작업을 건너뜁니다. (('@(_ReferenceCopyLocalPaths)'!='') and '$(DesignTimeBuild)' != 'true')이(가) ((''!='') and '' != 'true')(으)로 확인되었습니다.
+       조건이 잘못되어 "Message" 작업을 건너뜁니다. ('$(_REFERENCE_DEBUG)'=='true')이(가) (''=='true')(으)로 확인되었습니다.
+     1>"multifinder.vcxproj" 프로젝트에 "ComputeReferenceCLInput" 대상을 빌드했습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets" 파일에 있는 "WarnCompileDuplicatedFilename" 대상("_ClCompile" 대상이 종속됨):
+       조건이 잘못되어 "VCMessage" 작업을 건너뜁니다. ('%(Filename)%(Extension)' != '@(ClCompile->'%(Filename)%(Extension)')' and '%(ObjectFileName)' == '@(ClCompile->Metadata(ObjectFileName)->Distinct())')이(가) ('main.cpp' != 'main.cpp' and 'Debug\' == 'Debug\')(으)로 확인되었습니다.
+       조건이 잘못되어 "VCMessage" 작업을 건너뜁니다. ('%(Filename)%(Extension)' != '@(ClCompile->'%(Filename)%(Extension)')' and '%(ObjectFileName)' == '@(ClCompile->Metadata(ObjectFileName)->Distinct())')이(가) ('PJH_File.cpp' != 'PJH_File.cpp' and 'Debug\' == 'Debug\')(으)로 확인되었습니다.
+       조건이 잘못되어 "VCMessage" 작업을 건너뜁니다. ('%(Filename)%(Extension)' != '@(ClCompile->'%(Filename)%(Extension)')' and '%(ObjectFileName)' == '@(ClCompile->Metadata(ObjectFileName)->Distinct())')이(가) ('PJH_FileImpl.cpp' != 'PJH_FileImpl.cpp' and 'Debug\' == 'Debug\')(으)로 확인되었습니다.
+       조건이 잘못되어 "VCMessage" 작업을 건너뜁니다. ('%(Filename)%(Extension)' != '@(ClCompile->'%(Filename)%(Extension)')' and '%(ObjectFileName)' == '@(ClCompile->Metadata(ObjectFileName)->Distinct())')이(가) ('PJH_Filesystem.cpp' != 'PJH_Filesystem.cpp' and 'Debug\' == 'Debug\')(으)로 확인되었습니다.
+       조건이 잘못되어 "VCMessage" 작업을 건너뜁니다. ('%(Filename)%(Extension)' != '@(ClCompile->'%(Filename)%(Extension)')' and '%(ObjectFileName)' == '@(ClCompile->Metadata(ObjectFileName)->Distinct())')이(가) ('PJH_SubFilesystem.cpp' != 'PJH_SubFilesystem.cpp' and 'Debug\' == 'Debug\')(으)로 확인되었습니다.
+       조건이 잘못되어 "VCMessage" 작업을 건너뜁니다. ('%(Filename)%(Extension)' != '@(ClCompile->'%(Filename)%(Extension)')' and '%(ObjectFileName)' == '@(ClCompile->Metadata(ObjectFileName)->Distinct())')이(가) ('PJH_Thread.cpp' != 'PJH_Thread.cpp' and 'Debug\' == 'Debug\')(으)로 확인되었습니다.
+     1>"multifinder.vcxproj" 프로젝트에 "WarnCompileDuplicatedFilename" 대상을 빌드했습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets" 파일에 있는 "MakeDirsForCl" 대상("_ClCompile" 대상이 종속됨):
+       "MakeDir" 작업
+       "MakeDir" 작업을 실행했습니다.
+     1>"multifinder.vcxproj" 프로젝트에 "MakeDirsForCl" 대상을 빌드했습니다.
+       "PrepareForBuild" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+       "SetBuildDefaultEnvironmentVariables" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+       조건이 잘못되어 "SetUserMacroEnvironmentVariables" 대상을 건너뜁니다. ('@(BuildMacro)' != '')이(가) ('' != '')(으)로 확인되었습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets" 파일에 있는 "_SelectedFiles" 대상("SelectClCompile" 대상이 종속됨):
+     1>"multifinder.vcxproj" 프로젝트에 "_SelectedFiles" 대상을 빌드했습니다.
+       "ComputeMIDLGeneratedCompileInputs" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+       "ComputeCLInputPDBName" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+       "ComputeReferenceCLInput" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+       "WarnCompileDuplicatedFilename" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+       "_SelectedFiles" 대상을 건너뜁니다. 이전에 빌드되었습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets" 파일에 있는 "SelectCustomBuild" 대상("SelectClCompile" 대상이 종속됨):
+     1>"multifinder.vcxproj" 프로젝트에 "SelectCustomBuild" 대상을 빌드했습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppBuild.targets" 파일에 있는 "SelectClCompile" 대상("ClCompile" 대상이 종속됨):
+     1>"multifinder.vcxproj" 프로젝트에 "SelectClCompile" 대상을 빌드했습니다.
+       조건이 잘못되어 "GenerateTargetFrameworkMonikerAttribute" 대상을 건너뜁니다. ('$(GenerateTargetFrameworkAttribute)' == 'true')이(가) ('false' == 'true')(으)로 확인되었습니다.
+       조건이 잘못되어 "ManagedIncrementalBuildPreProcessDependencyGraph" 대상을 건너뜁니다. ('@(ClCompile)' != '' and '$(EnableManagedIncrementalBuild)' == 'True')이(가) ('main.cpp;PJH_File.cpp;PJH_FileImpl.cpp;PJH_Filesystem.cpp;PJH_SubFilesystem.cpp;PJH_Thread.cpp' != '' and 'false' == 'True')(으)로 확인되었습니다.
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트의 "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.CppCommon.targets" 파일에 있는 "ClCompile" 대상("_ClCompile" 대상이 종속됨):
+       조건이 잘못되어 "Delete" 작업을 건너뜁니다. ('%(ClCompile.DebugInformationFormat)' != '' and '%(ClCompile.DebugInformationFormat)' != 'OldStyle' and '%(ClCompile.ProgramDataBaseFileName)' != '' and !Exists(%(ClCompile.ProgramDataBaseFileName)))이(가) ('EditAndContinue' != '' and 'EditAndContinue' != 'OldStyle' and 'Debug\vc120.pdb' != '' and !Exists(Debug\vc120.pdb))(으)로 확인되었습니다.
+       조건이 잘못되어 "CL" 작업을 건너뜁니다. ('%(ClCompile.PrecompiledHeader)' == 'Create' and '%(ClCompile.ExcludedFromBuild)'!='true' and '%(ClCompile.CompilerIteration)' == '')이(가) ('' == 'Create' and ''!='true' and '' == '')(으)로 확인되었습니다.
+       "C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V120\Microsoft.Build.CppTasks.Common.dll" 어셈블리에서 "CL" 작업을 사용합니다.
+       "CL" 작업
+         읽기 추적 로그:
+         	Debug\multifinder.tlog\cl.read.1.tlog
+         D:\ENGINE\PJHENGINE\PJHENGINE\MAIN.CPP|D:\ENGINE\PJHENGINE\PJHENGINE\PJH_FILE.CPP|D:\ENGINE\PJHENGINE\PJHENGINE\PJH_FILEIMPL.CPP|D:\ENGINE\PJHENGINE\PJHENGINE\PJH_FILESYSTEM.CPP|D:\ENGINE\PJHENGINE\PJHENGINE\PJH_SUBFILESYSTEM.CPP|D:\ENGINE\PJHENGINE\PJHENGINE\PJH_THREAD.CPP에 대한 출력:
+         	D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\MAIN.OBJ
+         	D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\PJH_FILE.OBJ
+         	D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\PJH_FILEIMPL.OBJ
+         	D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\PJH_FILESYSTEM.OBJ
+         	D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\PJH_SUBFILESYSTEM.OBJ
+         	D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\PJH_THREAD.OBJ
+         D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\PJH_SUBFILESYSTEM.OBJ 출력이 없기 때문에 PJH_SubFilesystem.cpp이(가) 컴파일됩니다.
+         Forcing rebuild of all source files due to a change in the command line since the last build.
+         도구로 전달된 환경 변수:
+           VS_UNICODE_OUTPUT=1200
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ID:\engine\PJHEngine\PJHEngine\externallib\boost\ /ID:\engine\PJHEngine\PJHEngine\externallib\boost\filesystem\ /ID:\engine\PJHEngine\PJHEngine\externallib\boost\config\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt /D "DEBUG" main.cpp PJH_File.cpp PJH_FileImpl.cpp PJH_Filesystem.cpp PJH_SubFilesystem.cpp PJH_Thread.cpp
+         Tracking command:
+         C:\Program Files (x86)\MSBuild\12.0\bin\Tracker.exe /d "C:\Program Files (x86)\MSBuild\12.0\bin\FileTracker.dll" /i D:\engine\PJHEngine\PJHEngine\Debug\multifinder.tlog /r "D:\ENGINE\PJHENGINE\PJHENGINE\MAIN.CPP|D:\ENGINE\PJHENGINE\PJHENGINE\PJH_FILE.CPP|D:\ENGINE\PJHENGINE\PJHENGINE\PJH_FILEIMPL.CPP|D:\ENGINE\PJHENGINE\PJHENGINE\PJH_FILESYSTEM.CPP|D:\ENGINE\PJHENGINE\PJHENGINE\PJH_SUBFILESYSTEM.CPP|D:\ENGINE\PJHENGINE\PJHENGINE\PJH_THREAD.CPP" /b MSBuildConsole_CancelEventedb9ed4e422346dfae443e9e214b1eda  /c "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe"  /c /ID:\engine\PJHEngine\PJHEngine\externallib\boost\ /ID:\engine\PJHEngine\PJHEngine\externallib\boost\filesystem\ /ID:\engine\PJHEngine\PJHEngine\externallib\boost\config\include /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt /D "DEBUG" main.cpp PJH_File.cpp PJH_FileImpl.cpp PJH_Filesystem.cpp PJH_SubFilesystem.cpp PJH_Thread.cpp
+         PJH_Thread.cpp
+         PJH_SubFilesystem.cpp
+     1>d:\engine\pjhengine\pjhengine\externallib\boost\filesystem\include\boost\filesystem\path.hpp(24): fatal error C1083: 포함 파일을 열 수 없습니다. 'boost/filesystem/config.hpp': No such file or directory
+         PJH_Filesystem.cpp
+         PJH_FileImpl.cpp
+         PJH_File.cpp
          main.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"E:\ParkJunha\Project\multifinder\Debug\multifinder.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"E:\ParkJunha\Project\multifinder\Debug\multifinder.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"E:\ParkJunha\Project\multifinder\Debug\multifinder.lib" /MACHINE:X86 Debug\main.obj
-         Debug\PJH_File.obj
-         Debug\PJH_FileImpl.obj
-         Debug\PJH_Filesystem.obj
-         Debug\PJH_SubFilesystem.obj
-         Debug\PJH_Thread.obj
-         multifinder.vcxproj -> E:\ParkJunha\Project\multifinder\Debug\multifinder.exe
-     1>Done Building Project "E:\ParkJunha\Project\multifinder\multifinder\multifinder.vcxproj" (Build target(s)).
+         코드를 생성하고 있습니다...
+         명령이 종료되었습니다(코드: 2).
+       "CL" 작업을 실행했습니다. - 실패
+     1>"multifinder.vcxproj" 프로젝트에 "ClCompile" 대상을 빌드했습니다. - 실패
+     1>"D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" 프로젝트를 빌드했습니다(Build 대상). - 실패
 
-Build succeeded.
+빌드하지 못했습니다.
 
-Time Elapsed 00:00:02.82
+경과 시간: 00:00:03.40

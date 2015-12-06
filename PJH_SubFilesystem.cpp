@@ -3,6 +3,8 @@
 #include "PJH_Log.h"
 #include "PJH_File.h"
 
+#include "externallib\boost\filesystem\include\boost\filesystem\path.hpp"
+
 #if defined(_MSC_VER) || !defined(_MSC_VER)
 
 #endif
