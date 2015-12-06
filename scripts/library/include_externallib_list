@@ -1,0 +1,13 @@
+boost|filesystem|https://github.com/devJunpark/filesystem.git
+boost|compute|https://github.com/devJunpark/compute.git
+boost|thread|https://github.com/devJunpark/thread.git
+boost|system|https://github.com/devJunpark/system.git
+boost|config|https://github.com/devJunpark/config.git
+boost|type_traits|https://github.com/devJunpark/type_traits.git
+boost|functional|https://github.com/boostorg/functional.git
+boost|iterator|https://github.com/boostorg/iterator.git
+boost|io|https://github.com/boostorg/io.git
+boost|boost|https://github.com/boostorg/boost.git
+boost|static_assert|https://github.com/boostorg/static_assert.git
+
+microsoft|test|
