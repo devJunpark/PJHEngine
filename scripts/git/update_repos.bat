@@ -10,7 +10,7 @@
 @for /D %%d in ("*") do @(
     @echo Current Directory[%%d]
     @cd %%d
-    goto label_update
-    @call git pull PJHEngine %1
+    @call :label_update %1
+    @git pull PJHEngine %1
     @cd ..
 )
