@@ -8,6 +8,8 @@
 
 namespace PJH {
 namespace Filesystem {
+class PJH_File;
+typedef std::shared_ptr<PJH_File> PJHFile_Ptr;
 namespace Impl {
 	class PJH_FileImpl;
 } // Impl

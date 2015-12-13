@@ -5,18 +5,31 @@
 #include <map>
 #include <set>
 
+#include "PJH_File.h"
 // This class must be created by PJH_Filesystemmanager.
 
 namespace PJH {
 namespace Filesystem {
-class PJH_File;
+class PJH_SubFilesystem;
+typedef std::shared_ptr<PJH_SubFilesystem> SubFileSystem_Ptr;
+
 class PJH_SubFilesystem 
 {
 friend class PJH_FilesystemManager;
 public :
-	typedef std::map<std::string, PJH_SubFilesystem*> MAP_NAME_DIR_TYPE;
-	typedef std::map<std::string, PJH_File*>		  MAP_NAME_FILE_TYPE;
+	typedef std::map<std::string, SubFileSystem_Ptr> MAP_NAME_DIR_TYPE;
+	typedef std::map<std::string, PJHFile_Ptr>		 MAP_NAME_FILE_TYPE;
+
+	typedef std::pair<MAP_NAME_DIR_TYPE::const_iterator, MAP_NAME_DIR_TYPE::const_iterator>   DirIteratorPair;
+	typedef std::pair<MAP_NAME_FILE_TYPE::const_iterator, MAP_NAME_FILE_TYPE::const_iterator> FileIteratorPair;
+
 private : 
+	struct PJH_SubFilesystemDeleter {
+		void operator() (PJH_SubFilesystem* sfs) {
+			if (sfs)
+				delete sfs;
+		}
+	};
 
 	std::string _rootpath;
 	MAP_NAME_DIR_TYPE  _dirchilds;	// Key:Dir's full name
@@ -24,6 +37,12 @@ private :
 
 	explicit PJH_SubFilesystem();
 	virtual ~PJH_SubFilesystem();
+
+	static SubFileSystem_Ptr sharedptr_create() 
+	{
+		return SubFileSystem_Ptr(new PJH_SubFilesystem(), PJH_SubFilesystemDeleter()); 
+	}
+
 public :
 	// If RootPath were not set, This class assume rootpath is current working directory.
 	bool		setRootPath(const char* rootpath);
@@ -31,11 +50,11 @@ public :
 
 	bool isExist(const char* targetname, bool isSearchSub = false) const;
 
-	PJH_File*		   getFile(const char* targetname, bool isSearchSub = false);
-	PJH_SubFilesystem* getDir( const char* targetname, bool isSearchSub = false);
+	PJHFile_Ptr		  getFile(const char* targetname, bool isSearchSub = false);
+	SubFileSystem_Ptr getDir(const char* targetname, bool isSearchSub = false);
 
-	MAP_NAME_FILE_TYPE::const_iterator getFileList() const;
-	MAP_NAME_DIR_TYPE::const_iterator  getDirList()  const;
+	FileIteratorPair getFileList() const;
+	DirIteratorPair  getDirList()  const;
 
 	bool addFile(const char* filename, const void* buffer = NULL, int buffersize = 0);
 	bool deleteFile(const char* filename);

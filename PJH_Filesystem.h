@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <memory>
 
 #include "PJH_SubFilesystem.h"
 
@@ -13,12 +14,9 @@ namespace Filesystem {
 class PJH_FilesystemManager
 {
 private:
-	typedef std::vector<PJH_SubFilesystem*>::iterator		SFS_ITERATOR;
-	typedef std::vector<PJH_SubFilesystem*>::const_iterator CONST_SFS_ITERATOR;
-
 	static PJH_FilesystemManager* _instance;
 
-	std::vector<PJH_SubFilesystem*> _child;
+	std::vector<SubFileSystem_Ptr> _child;
 
 	explicit PJH_FilesystemManager();
 	explicit PJH_FilesystemManager(const PJH_FilesystemManager&);
@@ -33,8 +31,8 @@ public:
 	static bool isExistFile(const char* filename, const char* dirpath = NULL);
 	static bool getWorkingDirectory(char* path, int size);
 
-	PJH_SubFilesystem* openSubFilesystem(const char* rootpath = NULL);
-	bool closeSubFilesystem(PJH_SubFilesystem* subfilesystem);
+	SubFileSystem_Ptr openSubFilesystem(const char* rootpath = NULL);
+	bool closeSubFilesystem(SubFileSystem_Ptr subfilesystem);
 
 };
 } // namespace Filesystem

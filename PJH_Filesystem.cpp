@@ -17,8 +17,8 @@
 	#define PathFileExistsDefine(dummy_path) -1
 #endif
 
-using namespace PJH::Filesystem;
-
+namespace PJH{
+namespace Filesystem{
 PJH_FilesystemManager* PJH_FilesystemManager::_instance = NULL;
 
 PJH_FilesystemManager::PJH_FilesystemManager() 
@@ -27,7 +27,7 @@ PJH_FilesystemManager::PJH_FilesystemManager()
 }
 PJH_FilesystemManager::~PJH_FilesystemManager()
 {
-	
+
 }
 
 PJH_FilesystemManager* PJH_FilesystemManager::getInstance()
@@ -43,18 +43,16 @@ void PJH_FilesystemManager::release()
 {
 	if (_instance) {
 		PJH_TAG_LOG("PJH_Filesystem::release", "Instance will be deleted by release");
-
-		for (SFS_ITERATOR iter = _instance->_child.begin(); iter != _instance->_child.end(); ++iter) {
-			PJH_TAG_LOG("PJH_FilesystemManager::release", 
-						"I need to test that It really was called dtor when I call delete.");
-			delete (*iter);
-			//(*iter)->~PJH_SubFilesystem();
+		std::vector<SubFileSystem_Ptr>::iterator iter = _instance->_child.begin();
+		while (iter != _instance->_child.end())
+		{
+			if (*iter != NULL)
+				_instance->_child.erase(iter);
+			iter = _instance->_child.begin();
 		}
-
 		_instance->_child.clear();
 		delete _instance;
 	}
-
 	_instance = NULL;
 }
 
@@ -109,42 +107,40 @@ bool PJH_FilesystemManager::getWorkingDirectory(char* path, int size)
 	return isSuccessed;
 }
 
-PJH_SubFilesystem* PJH_FilesystemManager::openSubFilesystem(const char* rootpath)
+SubFileSystem_Ptr PJH_FilesystemManager::openSubFilesystem(const char* rootpath)
 {
 	char cwdpath[1024];
 	if (!rootpath) {
 		getWorkingDirectory(cwdpath, sizeof(cwdpath));
 	}
-	PJH_SubFilesystem* newsfs = new PJH_SubFilesystem();
+	SubFileSystem_Ptr newsfs = PJH_SubFilesystem::sharedptr_create();
 	if (newsfs) {
 		bool isSuccessed = newsfs->setRootPath(rootpath == NULL ? cwdpath : rootpath);
 		if (isSuccessed) {
 			_child.push_back(newsfs);
 		}
-		else {
-			delete newsfs;
-			newsfs = NULL;
-		}
 	}
 	return newsfs;
 }
 
-bool PJH_FilesystemManager::closeSubFilesystem(PJH_SubFilesystem* subfilesystem)
+bool PJH_FilesystemManager::closeSubFilesystem(SubFileSystem_Ptr subfilesystem)
 {
 	if (subfilesystem == NULL) {
 		PJH_TAG_LOG("PJH_FilesystemManager::closeSubFilesystem", 
 					"You passed invalid pointer. You must check argument");
 		return false;
 	}
-	for (SFS_ITERATOR iter = _child.begin(); iter != _child.end(); ++iter)
+	std::vector<SubFileSystem_Ptr>::iterator iter;
+	for (iter = _child.begin(); iter != _child.end(); ++iter)
 	{
 		if (*iter != NULL && (*iter == subfilesystem)) {
 			PJH_TAG_LOG("PJH_FilesystemManager::closeSubFilesystem",
 						"successed to search for removing subfilesystem.");
-			delete *iter;
 			_child.erase(iter);
 			return true;
 		}
 	}
 	return false;
 }
+} // End of namespace of Filesystem
+} // End of namespace of PJH

@@ -1,4 +1,4 @@
-﻿Build started 2015-12-13 오후 4:58:19.
+﻿Build started 2015-12-14 오전 12:30:09.
      1>Project "D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" on node 2 (Build target(s)).
      1>Building with tools version "12.0".
      1>Target "_CheckForInvalidConfigurationAndPlatform" in file "C:\Program Files (x86)\MSBuild\12.0\bin\Microsoft.Common.CurrentVersion.targets" from project "D:\engine\PJHEngine\PJHEngine\multifinder.vcxproj" (entry point):
@@ -135,7 +135,7 @@
        Done executing task "WriteLinesToFile".
        Using "Touch" task from assembly "Microsoft.Build.Tasks.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a".
        Task "Touch"
-         Creating "Debug\multifinder.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Debug\multifinder.tlog\unsuccessfulbuild".
        Done executing task "Touch".
      1>Done building target "InitializeBuildStatus" in project "multifinder.vcxproj".
        Target "AssignProjectConfiguration" skipped. Previously built successfully.
@@ -236,13 +236,20 @@
          	D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\PJH_FILESYSTEM.OBJ
          	D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\PJH_SUBFILESYSTEM.OBJ
          	D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\PJH_THREAD.OBJ
-         PJH_SubFilesystem.cpp will be compiled as D:\engine\PJHEngine\PJHEngine\PJH_SubFilesystem.cpp was modified at 2015-12-13 오후 4:58:14.
+         PJH_Filesystem.cpp will be compiled as output D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\PJH_FILESYSTEM.OBJ does not exist.
+         PJH_SubFilesystem.cpp will be compiled as D:\ENGINE\PJHENGINE\PJHENGINE\PJH_FILESYSTEM.H was modified at 2015-12-14 오전 12:27:56.
+         main.cpp will be compiled as D:\ENGINE\PJHENGINE\PJHENGINE\PJH_FILESYSTEM.H was modified at 2015-12-14 오전 12:27:56.
          Environment Variables passed to tool:
-           VS_UNICODE_OUTPUT=1452
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ID:\engine\PJHEngine\PJHEngine\packages\boost_1_59_0\boost_1_59_0\ /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt /D "DEBUG" PJH_SubFilesystem.cpp
+           VS_UNICODE_OUTPUT=1192
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ID:\engine\PJHEngine\PJHEngine\packages\boost_1_59_0\boost_1_59_0\ /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt /D "DEBUG" PJH_Filesystem.cpp PJH_SubFilesystem.cpp main.cpp
          Tracking command:
-         C:\Program Files (x86)\MSBuild\12.0\bin\Tracker.exe /d "C:\Program Files (x86)\MSBuild\12.0\bin\FileTracker.dll" /i D:\engine\PJHEngine\PJHEngine\Debug\multifinder.tlog /r D:\ENGINE\PJHENGINE\PJHENGINE\PJH_SUBFILESYSTEM.CPP /b MSBuildConsole_CancelEvent95d7a8af30ed4d38a688ff060d07201d  /c "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe"  /c /ID:\engine\PJHEngine\PJHEngine\packages\boost_1_59_0\boost_1_59_0\ /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt /D "DEBUG" PJH_SubFilesystem.cpp
+         C:\Program Files (x86)\MSBuild\12.0\bin\Tracker.exe /d "C:\Program Files (x86)\MSBuild\12.0\bin\FileTracker.dll" /i D:\engine\PJHEngine\PJHEngine\Debug\multifinder.tlog /r "D:\ENGINE\PJHENGINE\PJHENGINE\MAIN.CPP|D:\ENGINE\PJHENGINE\PJHENGINE\PJH_FILESYSTEM.CPP|D:\ENGINE\PJHENGINE\PJHENGINE\PJH_SUBFILESYSTEM.CPP" /b MSBuildConsole_CancelEvent9e0c7e80516d4feba45b1da745da96d5  /c "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe"  /c /ID:\engine\PJHEngine\PJHEngine\packages\boost_1_59_0\boost_1_59_0\ /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt /D "DEBUG" PJH_Filesystem.cpp PJH_SubFilesystem.cpp main.cpp
+         PJH_Filesystem.cpp
+         Generating Code...
+         Compiling...
+         main.cpp
          PJH_SubFilesystem.cpp
+         Generating Code...
        Done executing task "CL".
      1>Done building target "ClCompile" in project "multifinder.vcxproj".
        Target "ManagedIncrementalBuildPostProcessDependencyGraph" skipped, due to false condition; ('@(ClCompile)' != '' and '$(EnableManagedIncrementalBuild)' == 'True') was evaluated as ('main.cpp;PJH_File.cpp;PJH_FileImpl.cpp;PJH_Filesystem.cpp;PJH_SubFilesystem.cpp;PJH_Thread.cpp' != '' and 'false' == 'True').
@@ -390,9 +397,9 @@
          	C:\PROGRAM FILES (X86)\WINDOWS KITS\8.1\LIB\WINV6.3\UM\X86\SHLWAPI.LIB
          	D:\ENGINE\PJHENGINE\PJHENGINE\PACKAGES\BOOST_1_59_0\BOOST_1_59_0\BIN.V2\LIBS\FILESYSTEM\BUILD\MSVC-12.0\DEBUG\THREADING-MULTI\LIBBOOST_FILESYSTEM-VC120-MT-GD-1_59.LIB
          	D:\ENGINE\PJHENGINE\PJHENGINE\PACKAGES\BOOST_1_59_0\BOOST_1_59_0\BIN.V2\LIBS\SYSTEM\BUILD\MSVC-12.0\DEBUG\THREADING-MULTI\LIBBOOST_SYSTEM-VC120-MT-GD-1_59.LIB
-         Source compilation required: input D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\PJH_SUBFILESYSTEM.OBJ is newer than output D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\MULTIFINDER.EXE.
+         Source compilation required: input D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\MAIN.OBJ is newer than output D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\MULTIFINDER.PDB.
          Environment Variables passed to tool:
-           VS_UNICODE_OUTPUT=1628
+           VS_UNICODE_OUTPUT=1096
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\engine\PJHEngine\PJHEngine\Debug\multifinder.exe" /INCREMENTAL /NOLOGO /LIBPATH:"D:\engine\PJHEngine\PJHEngine\packages\boost_1_59_0\boost_1_59_0\bin.v2\libs\filesystem\build\msvc-12.0\debug\threading-multi\\" /LIBPATH:"D:\engine\PJHEngine\PJHEngine\packages\boost_1_59_0\boost_1_59_0\bin.v2\libs\system\build\msvc-12.0\debug\threading-multi" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\engine\PJHEngine\PJHEngine\Debug\multifinder.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\engine\PJHEngine\PJHEngine\Debug\multifinder.lib" /MACHINE:X86 Debug\main.obj
          Debug\PJH_File.obj
          Debug\PJH_FileImpl.obj
@@ -400,7 +407,7 @@
          Debug\PJH_SubFilesystem.obj
          Debug\PJH_Thread.obj
          Tracking command:
-         C:\Program Files (x86)\MSBuild\12.0\bin\Tracker.exe /a /d "C:\Program Files (x86)\MSBuild\12.0\bin\FileTracker.dll" /i D:\engine\PJHEngine\PJHEngine\Debug\multifinder.tlog /r "D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\MAIN.OBJ|D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\PJH_FILE.OBJ|D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\PJH_FILEIMPL.OBJ|D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\PJH_FILESYSTEM.OBJ|D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\PJH_SUBFILESYSTEM.OBJ|D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\PJH_THREAD.OBJ" /b MSBuildConsole_CancelEvent5bd7a1b38bb84fbc977692ec45ba1aa8  /c "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe"  /ERRORREPORT:PROMPT /OUT:"D:\engine\PJHEngine\PJHEngine\Debug\multifinder.exe" /INCREMENTAL /NOLOGO /LIBPATH:"D:\engine\PJHEngine\PJHEngine\packages\boost_1_59_0\boost_1_59_0\bin.v2\libs\filesystem\build\msvc-12.0\debug\threading-multi\\" /LIBPATH:"D:\engine\PJHEngine\PJHEngine\packages\boost_1_59_0\boost_1_59_0\bin.v2\libs\system\build\msvc-12.0\debug\threading-multi" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\engine\PJHEngine\PJHEngine\Debug\multifinder.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\engine\PJHEngine\PJHEngine\Debug\multifinder.lib" /MACHINE:X86 Debug\main.obj
+         C:\Program Files (x86)\MSBuild\12.0\bin\Tracker.exe /a /d "C:\Program Files (x86)\MSBuild\12.0\bin\FileTracker.dll" /i D:\engine\PJHEngine\PJHEngine\Debug\multifinder.tlog /r "D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\MAIN.OBJ|D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\PJH_FILE.OBJ|D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\PJH_FILEIMPL.OBJ|D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\PJH_FILESYSTEM.OBJ|D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\PJH_SUBFILESYSTEM.OBJ|D:\ENGINE\PJHENGINE\PJHENGINE\DEBUG\PJH_THREAD.OBJ" /b MSBuildConsole_CancelEvent80d6c09242104b6bac0a6aae1357fe46  /c "C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe"  /ERRORREPORT:PROMPT /OUT:"D:\engine\PJHEngine\PJHEngine\Debug\multifinder.exe" /INCREMENTAL /NOLOGO /LIBPATH:"D:\engine\PJHEngine\PJHEngine\packages\boost_1_59_0\boost_1_59_0\bin.v2\libs\filesystem\build\msvc-12.0\debug\threading-multi\\" /LIBPATH:"D:\engine\PJHEngine\PJHEngine\packages\boost_1_59_0\boost_1_59_0\bin.v2\libs\system\build\msvc-12.0\debug\threading-multi" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\engine\PJHEngine\PJHEngine\Debug\multifinder.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\engine\PJHEngine\PJHEngine\Debug\multifinder.lib" /MACHINE:X86 Debug\main.obj
          Debug\PJH_File.obj
          Debug\PJH_FileImpl.obj
          Debug\PJH_Filesystem.obj
@@ -538,4 +545,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.47
+Time Elapsed 00:00:03.51

@@ -25,7 +25,27 @@ PJH_SubFilesystem::PJH_SubFilesystem()
 }
 PJH_SubFilesystem::~PJH_SubFilesystem()
 {
-
+	MAP_NAME_DIR_TYPE::iterator diriter = _dirchilds.begin();
+	while (diriter != _dirchilds.end())
+	{
+		if (diriter->second != NULL){
+			PJH_FilesystemManager::getInstance()->closeSubFilesystem(diriter->second);
+			_dirchilds.erase(diriter);
+		}
+		diriter = _dirchilds.begin();
+	}
+	MAP_NAME_FILE_TYPE::iterator fileiter = _filechilds.begin();
+	while (fileiter != _filechilds.end())
+	{
+		if (fileiter->second != NULL) {
+			if (fileiter->second->isOpen())
+				fileiter->second->close();
+			_filechilds.erase(fileiter);
+		}
+		fileiter = _filechilds.begin();
+	}
+	_dirchilds.clear();
+	_filechilds.clear();
 }
 
 bool PJH_SubFilesystem::setRootPath(const char* rootpath)
@@ -83,7 +103,7 @@ bool PJH_SubFilesystem::addFile(const char* filename, const void* buffer, int bu
 	}
 	std::string strFilename{ filename };
 	MAP_NAME_FILE_TYPE::const_iterator iter = _filechilds.begin();
-	PJH_File* rtvfile = NULL;
+	PJHFile_Ptr rtvfile = NULL;
 	for (iter; iter != _filechilds.end(); ++iter)
 	{
 		if (iter->first == strFilename) {
@@ -95,10 +115,10 @@ bool PJH_SubFilesystem::addFile(const char* filename, const void* buffer, int bu
 	fullpath.append(filename);
 	int option = PJH_FileOp::FOPEN_READWRITE;
 	if (!rtvfile) {
-		rtvfile = new PJH_File();
+		rtvfile = PJHFile_Ptr(new PJH_File());
 		rtvfile->open(fullpath.c_str(), 
 					  isExist(filename) ? option : option | PJH_FileOp::FOPEN_CREATE);
-		_filechilds.insert(std::pair<std::string, PJH_File*>(strFilename, rtvfile));
+		_filechilds.insert(std::pair<std::string, PJHFile_Ptr>(strFilename, rtvfile));
 	}
 	else if (!rtvfile->isOpen()) {
 		rtvfile->open(fullpath.c_str(), option);
@@ -133,10 +153,9 @@ bool PJH_SubFilesystem::deleteFile(const char* filename)
 			break;
 	}
 	if (iter != _filechilds.end()) { // successed searching file instance.
-		PJH_File* file = iter->second;
+		PJHFile_Ptr file = iter->second;
 		if (file != NULL && file->isOpen())
 			file->close();
-		delete file;
 		_filechilds.erase(iter);
 	}
 	std::string fullpath{ getRootPath() };
@@ -154,7 +173,7 @@ bool PJH_SubFilesystem::addFolder(const char* foldername)
 	}
 	std::string strDirName{ foldername };
 	MAP_NAME_DIR_TYPE::const_iterator citer = _dirchilds.begin();
-	PJH_SubFilesystem* sfs = NULL;
+	SubFileSystem_Ptr sfs = NULL;
 	for (citer; citer != _dirchilds.end(); ++citer)
 	{
 		if (citer->first == strDirName) {
@@ -170,7 +189,7 @@ bool PJH_SubFilesystem::addFolder(const char* foldername)
 			bool isSuccessed = fs::create_directories(dirpath);
 			if (isSuccessed) {
 				sfs = PJH_FilesystemManager::getInstance()->openSubFilesystem(fullpath.c_str());
-				_dirchilds.insert(std::pair<std::string, PJH_SubFilesystem*>(strDirName, sfs));
+				_dirchilds.insert(std::pair<std::string, SubFileSystem_Ptr>(strDirName, sfs));
 			}
 			return isSuccessed;
 		}
@@ -181,12 +200,36 @@ bool PJH_SubFilesystem::deleteFolder(const char* foldername)
 {
 	namespace fs = boost::filesystem;
 
-
-
-	return false;
+	if (!foldername) {
+		PJH_TAG_LOG("PJH_SubFilesystem::addFolder", "you passed invalid pointer as targetname.");
+		return NULL;
+	}
+	std::string strDirName{ foldername };
+	MAP_NAME_DIR_TYPE::const_iterator iter = _dirchilds.begin();
+	SubFileSystem_Ptr sfs = NULL;
+	for (iter; iter != _dirchilds.end(); ++iter)
+	{
+		if (iter->first == strDirName) {
+			sfs = iter->second;
+			break;
+		}
+	}
+	std::string fullpath{ getRootPath() };
+	fullpath.append(foldername);
+	fs::path dirpath{ fullpath.c_str() };
+	bool isRemoveSuccessed = false;
+	if (isExist(foldername))
+		isRemoveSuccessed = fs::remove(dirpath);
+	if (sfs){
+		if (isRemoveSuccessed) {
+			PJH_FilesystemManager::getInstance()->closeSubFilesystem(sfs);
+			_dirchilds.erase(iter);
+		}
+	}
+	return isRemoveSuccessed;
 }
 
-PJH_SubFilesystem* PJH_SubFilesystem::getDir(const char* targetname, bool isSearchSub)
+SubFileSystem_Ptr PJH_SubFilesystem::getDir(const char* targetname, bool isSearchSub)
 {
 	namespace fs = boost::filesystem;
 
@@ -196,7 +239,7 @@ PJH_SubFilesystem* PJH_SubFilesystem::getDir(const char* targetname, bool isSear
 	}
 	std::string strFoldername{ targetname };
 	MAP_NAME_DIR_TYPE::const_iterator citer = _dirchilds.begin();
-	PJH_SubFilesystem* sfs = NULL;
+	SubFileSystem_Ptr sfs = NULL;
 	for (citer; citer != _dirchilds.end(); ++citer)
 	{
 		if (citer->first == strFoldername) {
@@ -214,7 +257,7 @@ PJH_SubFilesystem* PJH_SubFilesystem::getDir(const char* targetname, bool isSear
 							"Unknown Error during trying to get directory path[%s]!", fullpath.c_str());
 			}
 			else {
-				_dirchilds.insert(std::pair<std::string, PJH_SubFilesystem*>(strFoldername, sfs));
+				_dirchilds.insert(std::pair<std::string, SubFileSystem_Ptr>(strFoldername, sfs));
 			}
 		}
 	}
@@ -222,7 +265,7 @@ PJH_SubFilesystem* PJH_SubFilesystem::getDir(const char* targetname, bool isSear
 	return sfs;
 }
 
-PJH_File* PJH_SubFilesystem::getFile(const char* targetname, bool isSearchSub)
+PJHFile_Ptr PJH_SubFilesystem::getFile(const char* targetname, bool isSearchSub)
 {
 	namespace fs = boost::filesystem;
 
@@ -233,7 +276,7 @@ PJH_File* PJH_SubFilesystem::getFile(const char* targetname, bool isSearchSub)
 
 	std::string strFilename{ targetname };
 	MAP_NAME_FILE_TYPE::const_iterator citer = _filechilds.begin();
-	PJH_File* fp = NULL;
+	PJHFile_Ptr fp = NULL;
 	for (citer; citer != _filechilds.end(); ++citer)
 	{
 		if (citer->first == strFilename) {
@@ -245,9 +288,9 @@ PJH_File* PJH_SubFilesystem::getFile(const char* targetname, bool isSearchSub)
 		if (isExist(targetname)) {
 			std::string fullpath{ getRootPath() };
 			fullpath.append(targetname);
-			fp = new PJH_File();
+			fp = PJHFile_Ptr(new PJH_File());
 			if (fp){
-				_filechilds.insert(std::pair<std::string, PJH_File*>(strFilename, fp));
+				_filechilds.insert(std::pair<std::string, PJHFile_Ptr>(strFilename, fp));
 			}
 		}
 	}
