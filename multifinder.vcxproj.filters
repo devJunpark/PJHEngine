@@ -60,4 +60,8 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="boost_filesystem-vc120-mt-gd-1_59.dll" />
+    <None Include="boost_system-vc120-mt-gd-1_59.dll" />
+  </ItemGroup>
 </Project>

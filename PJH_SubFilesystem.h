@@ -13,32 +13,35 @@ class PJH_File;
 class PJH_SubFilesystem 
 {
 friend class PJH_FilesystemManager;
+public :
+	typedef std::map<std::string, PJH_SubFilesystem*> MAP_NAME_DIR_TYPE;
+	typedef std::map<std::string, PJH_File*>		  MAP_NAME_FILE_TYPE;
 private : 
+
 	std::string _rootpath;
-	std::set<std::string> _dirchilds;			  // Key:Dir's full name
-	std::map<std::string, PJH_File*> _filechilds; // Key:File's full name, Value:File pointer instance.
+	MAP_NAME_DIR_TYPE  _dirchilds;	// Key:Dir's full name
+	MAP_NAME_FILE_TYPE _filechilds; // Key:File's full name, Value:File pointer instance.
 
 	explicit PJH_SubFilesystem();
 	virtual ~PJH_SubFilesystem();
-
 public :
 	// If RootPath were not set, This class assume rootpath is current working directory.
 	bool		setRootPath(const char* rootpath);
-	const char* getRootPath();
+	const char* getRootPath() const;
 
 	bool isExist(const char* targetname, bool isSearchSub = false) const;
 
-	PJH_File*		   searchFile(const char* targetname, bool isSearchSub = false) const;
-	PJH_SubFilesystem* searchDir(const char* targetname, bool isSearchSub = false) const;
+	PJH_File*		   getFile(const char* targetname, bool isSearchSub = false);
+	PJH_SubFilesystem* getDir( const char* targetname, bool isSearchSub = false);
 
-	PJH_File* addFile(const char* filename, const void* buffer=NULL);
-	bool	  deleteFile(const char* filename);
+	MAP_NAME_FILE_TYPE::const_iterator getFileList() const;
+	MAP_NAME_DIR_TYPE::const_iterator  getDirList()  const;
 
-	PJH_SubFilesystem* addFolder(const char* foldername);
-	bool			   deleteFolder(const char* foldername);
+	bool addFile(const char* filename, const void* buffer = NULL, int buffersize = 0);
+	bool deleteFile(const char* filename);
 
-	const std::set<std::string>&			getDirs() const;
-	const std::map<std::string, PJH_File*>& getFils() const;
+	bool addFolder(const char* foldername);
+	bool deleteFolder(const char* foldername);
 
 	void refresh();
 };

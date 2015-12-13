@@ -44,6 +44,8 @@ bool PJH_FileImpl::open(const char* filename, int option)
 		mode |= std::ios::app;
 	else if (option & PJH_FileOp::FOPEN_OVERWRITE)
 		mode |= std::ios::trunc;
+	else if (option & PJH_FileOp::FOPEN_CREATE)
+		mode |= std::ios::trunc;
 
 	if (option & PJH_FileOp::FOPEN_BINARYMODE)  mode |= std::ios::binary;
 

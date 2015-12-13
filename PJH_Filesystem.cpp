@@ -117,10 +117,15 @@ PJH_SubFilesystem* PJH_FilesystemManager::openSubFilesystem(const char* rootpath
 	}
 	PJH_SubFilesystem* newsfs = new PJH_SubFilesystem();
 	if (newsfs) {
-		newsfs->setRootPath(rootpath == NULL ? cwdpath : rootpath);
-		_child.push_back(newsfs);
+		bool isSuccessed = newsfs->setRootPath(rootpath == NULL ? cwdpath : rootpath);
+		if (isSuccessed) {
+			_child.push_back(newsfs);
+		}
+		else {
+			delete newsfs;
+			newsfs = NULL;
+		}
 	}
-
 	return newsfs;
 }
 
@@ -136,6 +141,7 @@ bool PJH_FilesystemManager::closeSubFilesystem(PJH_SubFilesystem* subfilesystem)
 		if (*iter != NULL && (*iter == subfilesystem)) {
 			PJH_TAG_LOG("PJH_FilesystemManager::closeSubFilesystem",
 						"successed to search for removing subfilesystem.");
+			delete *iter;
 			_child.erase(iter);
 			return true;
 		}

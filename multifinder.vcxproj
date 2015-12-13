@@ -41,6 +41,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(ProjectDir)packages\boost_1_59_0\boost_1_59_0\boost\;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)packages\boost_1_59_0\boost_1_59_0\bin.v2\libs\filesystem\build\msvc-12.0\debug\threading-multi;$(ProjectDir)packages\boost_1_59_0\boost_1_59_0\bin.v2\libs\system\build\msvc-12.0\debug\threading-multi;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -53,11 +55,13 @@
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_LIB;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalOptions>/D "DEBUG" %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>$(ProjectDir)externallib\boost\;$(ProjectDir)externallib\boost\filesystem\;$(ProjectDir)externallib\boost\config\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>D:\engine\PJHEngine\PJHEngine\packages\boost_1_59_0\boost_1_59_0\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>$(ProjectDir)packages\boost_1_59_0\boost_1_59_0\bin.v2\libs\filesystem\build\msvc-12.0\debug\threading-multi\;$(ProjectDir)packages\boost_1_59_0\boost_1_59_0\bin.v2\libs\system\build\msvc-12.0\debug\threading-multi;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -94,6 +98,10 @@
     <ClInclude Include="PJH_Log.h" />
     <ClInclude Include="PJH_SubFilesystem.h" />
     <ClInclude Include="PJH_Thread.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="boost_filesystem-vc120-mt-gd-1_59.dll" />
+    <None Include="boost_system-vc120-mt-gd-1_59.dll" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
