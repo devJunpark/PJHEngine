@@ -59,6 +59,9 @@
     <ClInclude Include="PJH_Assert.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="PJH_Profiling.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="boost_filesystem-vc120-mt-gd-1_59.dll" />

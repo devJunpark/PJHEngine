@@ -5,8 +5,12 @@
 #include "PJH_Assert.h"
 #include "PJH_SubFilesystem.h"
 
+#include "PJH_Profiling.h"
+
 int main()
 {
+	PJH_SIMPLE_TIMESTAMP_START;
+
 	namespace pjhfs = PJH::Filesystem;
 	PJH::Filesystem::PJH_File file;
 
@@ -35,20 +39,28 @@ int main()
 	file.close();
 
 	PJH::Filesystem::PJH_FilesystemManager* sfminstance = PJH::Filesystem::PJH_FilesystemManager::getInstance();
-	PJH::Filesystem::SubFileSystem_Ptr sfs = NULL;
-	sfs = sfminstance->openSubFilesystem("D://engine//PJHEngine//PJHEngine");
-	if (sfs && sfs->getRootPath() != NULL) {
-		if (sfs->addFolder("testfolder")) {
-			std::cout << "successed to add folder" << std::endl;
+	{
+		PJH::Filesystem::SubFileSystem_Ptr sfs = NULL;
+		sfs = sfminstance->openSubFilesystem("D://engine//PJHEngine//PJHEngine");
+		if (sfs && sfs->getRootPath() != NULL) {
+			if (sfs->addFolder("testfolder")) {
+				std::cout << "successed to add folder" << std::endl;
+			}
+			sfs->addFile("hihi.text");
+			pjhfs::SubFileSystem_Ptr sfs2 = sfs->getDir("scripts");
+			if (sfs2 && sfs->isExist("git")){
+				std::cout << "git folder exist" << std::endl;
+			}
 		}
-		sfs->addFile("hihi.text");
+		else {
+			PJH_LOG("Doesn't exist path");
+		}
+		sfminstance->closeSubFilesystem(sfs);
 	}
-	else {
-		PJH_LOG("Doesn't exist path");
-	}
-
-	sfminstance->closeSubFilesystem(sfs);
 	sfminstance->release();
+
+	PJH_SIMPLE_TIMESTAMP_END;
+
 	getchar();
 
 	return 0;

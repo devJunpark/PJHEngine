@@ -96,6 +96,7 @@
     <ClInclude Include="PJH_FileImpl.h" />
     <ClInclude Include="PJH_Filesystem.h" />
     <ClInclude Include="PJH_Log.h" />
+    <ClInclude Include="PJH_Profiling.h" />
     <ClInclude Include="PJH_SubFilesystem.h" />
     <ClInclude Include="PJH_Thread.h" />
   </ItemGroup>

@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<project name="PJHEngine" default="run" basedir=".">
+	<property name="debug" value="${PJHEngine.debug}"/>
+	
+	<target name="prepare-build">
+		<echo message="buliding prepare-build mode"/>
+		<tstamp property="build.buildtime" pattern="yyyy MM dd"/>	
+		<echo message="build time : ${build.buildtime}" />
+		
+		<available type="Framework" resource="python.2.7.10" property="Framework.python" />
+
+		<echo message="prepare-build Done."/>
+	</target>
+
+	<target name="build-debug" if="${debug}" depends="prepare-build">
+		<echo message="Buliding build-debug mode" />
+
+		
+	</target>
+
+	
+</project>
