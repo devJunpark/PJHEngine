@@ -1,27 +1,28 @@
 <?xml version="1.0"?>
 <project name="PJHEngine" default="build" basedir=".">
     <!-- Properties for path -->
-    <property name="build-dir" value="build"/>
+    <property name="build-dir"    value="build"/>
     <property name="packages-dir" value="packages"/>
-    <property name="bin-dir" value="bin"/>
-    <property name="script-dir" value="script"/>
+    <property name="bin-dir"      value="bin"/>
+	<property name="script-dir"   value="script"/>
+	<property name="bin.dll-dir"value="${bin-dir}/dlls"/>
 
     <!-- Properties for filename -->
     <property name="build-number" value="build_number"/>
 
     <!-- Properties for build -->
     <property name="PJHEngine.debug" value="false" unless="${arg.debug}" />
-    <property name="PJHEngine.name" value="${project::get-name}"/>
+    <property name="PJHEngine.name"  value="${project::get-name}"/>
     <mkdir dir="${build-dir}" if="${not directory::exists(${build-dir})" />
     <echo message="1.0.0.1" 
-        if="${not file::exists(${build-number})}" 
-        file="${build-dir}/${build-number}" />
+          if="${not file::exists(${build-number})}" 
+          file="${build-dir}/${build-number}" />
     <property name="PJHEngine.build_number" 
-        value="${project::get-base-directory()}/${build-dir}/${build-number}"/>
+              value="${project::get-base-directory()}/${build-dir}/${build-number}"/>
     <property name="PJHEngine.locale" value="kor" if="${arg.locale}"/>
 
     <!-- Targets -->
-    <!--TODO::Define target prepare for build, build for debug, build for release, run and open sln -->
+    <!-- TODO::Define target prepare for build, build for debug, build for release, run and open sln -->
     <target name="prepare-build">
 		<echo message="buliding prepare-build"/>
 		<tstamp property="build.buildtime" pattern="yyyy MM dd"/>	
@@ -29,10 +30,13 @@
 
 		<available type="Framework" resource="python.2.7.10" property="Framework.python" />
 
-    	<property name="build.debug" value="${PJHEngine.debug}"/>
-        <property name="build.bin" value="bin"/>
-        <property name="build.packdlls" value="packdlls"/>
+    	<property name="build.debug"    value="${PJHEngine.debug}"/>
+		<property name="build.bin"      value="${bin-dir}"/>
+		<property name="build.bin.dll"  value="${bin.dill-dir}"/>
         
+		<sources>
+			
+		</sources>
            
 		<echo message="prepare-build Done."/>
 	</target>
@@ -40,9 +44,7 @@
 	<target name="build-debug" if="${debug}" depends="prepare-build">
 		<echo message="Buliding build-debug mode" />
         <mkdir dir="${build.bin}"/>
-        <vbc target="winexe" output="${build.bin}/${project::get-name}.exe" debug="${build.debug}"
-
-            >
+        <vbc target="winexe" output="${build.bin}/${project::get-name}.exe" debug="${build.debug}">
 		
     </target>
 
