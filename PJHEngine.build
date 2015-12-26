@@ -25,7 +25,7 @@
     <!-- TODO::Define target prepare for build, build for debug, build for release, run and open sln -->
     <target name="prepare-build">
 		<echo message="buliding prepare-build"/>
-		<tstamp property="build.buildtime" pattern="yyyy MM dd"/>	
+		<tstamp property="build.buildtime" pattern="yyyy MM dd"/>
 		<echo message="build time : ${build.buildtime}" />
 
 		<available type="Framework" resource="python.2.7.10" property="Framework.python" />
