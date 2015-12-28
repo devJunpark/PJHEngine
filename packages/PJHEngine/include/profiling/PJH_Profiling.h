@@ -1,8 +1,8 @@
 #ifndef __PJH_INCLUDE_PJH_PROFILING_H__
 #define __PJH_INCLUDE_PJH_PROFILING_H__
 
-#include "PJH_Log.h"
-#include "PJH_Assert.h"
+#include "log/PJH_Log.h"
+#include "assert/PJH_Assert.h"
 #include <cinttypes>
 
 /* 

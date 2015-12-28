@@ -1,11 +1,10 @@
 #include <iostream>
 
-#include "PJH_File.h"
-#include "PJH_Filesystem.h"
-#include "PJH_Assert.h"
-#include "PJH_SubFilesystem.h"
-
-#include "PJH_Profiling.h"
+#include "filesystem/PJH_File.h"
+#include "filesystem/PJH_Filesystem.h"
+#include "assert/PJH_Assert.h"
+#include "filesystem/PJH_SubFilesystem.h"
+#include "profiling/PJH_Profiling.h"
 
 int main()
 {

@@ -1,9 +1,9 @@
 #include <fstream>
 #include <string>
 
-#include "PJH_Filesystem.h"
-#include "PJH_Log.h"
-#include "PJH_Assert.h"
+#include "filesystem/PJH_Filesystem.h"
+#include "log/PJH_Log.h"
+#include "assert/PJH_Assert.h"
 
 #ifdef _WIN32
 	#include <direct.h>

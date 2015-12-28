@@ -15,56 +15,12 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <None Include="boost_filesystem-vc120-mt-gd-1_59.dll" />
+    <None Include="boost_system-vc120-mt-gd-1_59.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PJH_Thread.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PJH_FileImpl.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PJH_File.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PJH_Filesystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="PJH_SubFilesystem.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="PJH_Thread.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PJH_Filesystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PJH_SubFilesystem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PJH_File.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PJH_FileImpl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PJH_Log.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PJH_FileDef.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PJH_Assert.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="PJH_Profiling.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="boost_filesystem-vc120-mt-gd-1_59.dll" />
-    <None Include="boost_system-vc120-mt-gd-1_59.dll" />
   </ItemGroup>
 </Project>

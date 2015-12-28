@@ -1,4 +1,4 @@
-#include "PJH_Thread.h"
+#include "thread/PJH_Thread.h"
 
 void PJH::Thread::operator()() const
 {

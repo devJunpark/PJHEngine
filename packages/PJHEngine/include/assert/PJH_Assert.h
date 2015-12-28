@@ -1,7 +1,7 @@
 #ifndef __PJH_INCLUDE_PJH_ASSERT_H__
 #define __PJH_INCLUDE_PJH_ASSERT_H__
 
-#include "PJH_Log.h"
+#include "log/PJH_Log.h"
 
 #if defined(DEBUG)
 /*

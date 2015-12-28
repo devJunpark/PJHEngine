@@ -1,7 +1,7 @@
-#include "PJH_Filesystem.h"
-#include "PJH_SubFilesystem.h"
-#include "PJH_Log.h"
-#include "PJH_File.h"
+#include "filesystem/PJH_Filesystem.h"
+#include "filesystem/PJH_SubFilesystem.h"
+#include "log/PJH_Log.h"
+#include "filesystem/PJH_File.h"
 
 #include <boost/filesystem/operations.hpp>
 #include <boost/filesystem/path.hpp>
