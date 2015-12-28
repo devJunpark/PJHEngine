@@ -4,48 +4,52 @@
     <property name="build-dir"    value="build"/>
     <property name="packages-dir" value="packages"/>
     <property name="bin-dir"      value="bin"/>
-	<property name="script-dir"   value="script"/>
-	<property name="bin.dll-dir"value="${bin-dir}/dlls"/>
+    <property name="script-dir"   value="script"/>
+    <property name="bin.dll-dir"  value="${bin-dir}/dlls"/>
 
     <!-- Properties for filename -->
     <property name="build-number" value="build_number"/>
 
     <!-- Properties for build -->
-    <property name="PJHEngine.debug" value="false" unless="${arg.debug}" />
-    <property name="PJHEngine.name"  value="${project::get-name}"/>
-    <mkdir dir="${build-dir}" if="${not directory::exists(${build-dir})" />
+    <property name="PJHEngine.debug" value="false"/>
+    <property name="PJHEngine.debug" value="${arg.debug}" if="${property::exists(arg.debug)}"/>
+    <property name="PJHEngine.name"  value="${project::get-name()}"/>
+    <mkdir dir="${build-dir}" if="${not directory::exists(build-dir)}" />
     <echo message="1.0.0.1" 
-          if="${not file::exists(${build-number})}" 
+          if="${not file::exists(build-number)}" 
           file="${build-dir}/${build-number}" />
-    <property name="PJHEngine.build_number" 
-              value="${project::get-base-directory()}/${build-dir}/${build-number}"/>
-    <property name="PJHEngine.locale" value="kor" if="${arg.locale}"/>
+    <loadfile file="${project::get-base-directory()}/${build-dir}/${build-number}"
+              property="PJHEngine.build_number"/>
+    <property name="PJHEngine.locale" value="kor" if="${not property::exists(arg.locale)}"/>
 
     <!-- Targets -->
     <!-- TODO::Define target prepare for build, build for debug, build for release, run and open sln -->
     <target name="prepare-build">
-		<echo message="buliding prepare-build"/>
-		<tstamp property="build.buildtime" pattern="yyyy MM dd"/>
-		<echo message="build time : ${build.buildtime}" />
+        <echo message="buliding prepare-build"/>
+        <tstamp property="build.buildtime" pattern="yyyy MM dd"/>
+        <echo message="build time : ${build.buildtime}" />
 
-		<available type="Framework" resource="python.2.7.10" property="Framework.python" />
-
-    	<property name="build.debug"    value="${PJHEngine.debug}"/>
-		<property name="build.bin"      value="${bin-dir}"/>
-		<property name="build.bin.dll"  value="${bin.dill-dir}"/>
         
-		<sources>
-			
-		</sources>
-           
-		<echo message="prepare-build Done."/>
-	</target>
 
-	<target name="build-debug" if="${debug}" depends="prepare-build">
-		<echo message="Buliding build-debug mode" />
+        <property name="build.debug"    value="${PJHEngine.debug}"/>
+        <property name="build.bin"      value="${bin-dir}"/>
+        <property name="build.bin.dll"  value="${bin.dll-dir}"/>
+           
+        <echo message="prepare-build Done."/>
+    </target>
+
+    <target name="build-libarary" depends="prepare-build">
+        <echo message="will bulid target name - build-library"/>
+
+        <property name="Library.boost" value="true"/>
+        <property name="Library.test"  value="false"/>
+
+    </target>
+
+    <target name="build-debug" if="${debug}" depends="prepare-build">
+        <echo message="Buliding build-debug mode" />
         <mkdir dir="${build.bin}"/>
-        <vbc target="winexe" output="${build.bin}/${project::get-name}.exe" debug="${build.debug}">
-		
+        
     </target>
 
     <target name="build-release" unless="${debug}" depends="prepare-build">
@@ -55,8 +59,29 @@
     </target>
 
     <target name="build" depends="prepare-build">
+        <echo message="Buliding buildmode" />
 
+
+
+        <call target="all-param-print"/>
     </target>
-
-	
+    
+    <target name="all-param-print">
+        <echo message="PJHEngine.name             =${PJHEngine.name}"/>
+        <echo message="PJHEngine.debug            =${PJHEngine.debug}"/>
+        <echo message="PJHEngine.locale           =${PJHEngine.locale}"/> 
+        <echo message="PJHEngine.build_number     =${PJHEngine.build_number}"/>
+        <echo message=""/>
+        <echo message="build.debug                =${build.debug}"/>
+        <echo message="build.bin                  =${build.bin}"/>
+        <echo message="build.bin.dll              =${build.bin.dll}"/>
+        <echo message=""/>
+        <if test="${property::exists('Library.boost')}">
+            <echo message="Library.boost              =${Library.boost}"/>
+        </if>
+        <if test="${property::exists('Library.test')}">
+            <echo message="Library.test               =${Library.test}"/>
+        </if>
+    </target>
+    
 </project>

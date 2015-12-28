@@ -8,4 +8,3 @@
 @set TOOL_7ZIP_PATH=%TOOL_BIN_PATH%\7zip
 @set TOOL_CMAKE_PATH=%TOOL_BIN_PATH%\cmake-3.4.1-win32-x86\bin
 @set TOOL_NANT_PATH=%TOOL_BIN_PATH%\nant-0.92\bin
-
