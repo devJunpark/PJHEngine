@@ -6,6 +6,8 @@
     <property name="bin-dir"      value="bin"/>
     <property name="script-dir"   value="script"/>
     <property name="bin.dll-dir"  value="${bin-dir}/dlls"/>
+    <property name="source-dir"   value="source"/>
+    <property name="include-dir"  value="include"/>
 
     <!-- Properties for filename -->
     <property name="build-number" value="build_number"/>
@@ -21,6 +23,12 @@
     <loadfile file="${project::get-base-directory()}/${build-dir}/${build-number}"
               property="PJHEngine.build_number"/>
     <property name="PJHEngine.locale" value="kor" if="${not property::exists(arg.locale)}"/>
+
+    <fileset id="runtime.PJHEngine.vcproj"
+             basedir="${project::get-base-directory()}">
+        <include name="${source-dir}/*"/>
+        <include name="${include-dir}/*"/> 
+    </fileset>
 
     <!-- Targets -->
     <!-- TODO::Define target prepare for build, build for debug, build for release, run and open sln -->
