@@ -1,4 +1,5 @@
-@set PROJECT_ROOT_PATH=D:\engine\PJHEngine\PJHEngine
+::@set PROJECT_ROOT_PATH=D:\engine\PJHEngine\PJHEngine
+@set PROJECT_ROOT_PATH=%~dp0..
 @set PROJECT_NAME=PJH_Engine
 
 @set TOOL_PATH=%PROJECT_ROOT_PATH%\tool
