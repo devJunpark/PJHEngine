@@ -155,6 +155,7 @@ $RECYCLE.BIN/
 .DS_Store
 
 # Custom Dir..
+packages/boost/
 packages/boost/boost_1_59_0/bin.v2
 packages/boost/boost_1_59_0/stage
 bin
