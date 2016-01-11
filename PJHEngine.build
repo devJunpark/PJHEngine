@@ -1,5 +1,8 @@
 <?xml version="1.0"?>
 <project name="PJHEngine" default="build" basedir=".">
+    <!-- For debugging.. -->
+    <property name="_build_error_reason" value=""/>
+
     <!-- Properties for path -->
     <property name="build-dir"    value="build"/>
     <property name="packages-dir" value="packages"/>
@@ -8,6 +11,9 @@
     <property name="bin.dll-dir"  value="${bin-dir}/dlls"/>
     <property name="source-dir"   value="source"/>
     <property name="include-dir"  value="include"/>
+
+    <property name="packages-path"  value="${project::get-base-directory()}/${packages-dir}"/>
+    <property name="bin.dll-path"   value="${project::get-base-directory()}/${bin.dll-dir}"/>
 
     <!-- Properties for filename -->
     <property name="build-number" value="build_number"/>
@@ -21,14 +27,28 @@
           if="${not file::exists(build-number)}" 
           file="${build-dir}/${build-number}" />
     <loadfile file="${project::get-base-directory()}/${build-dir}/${build-number}"
-              property="PJHEngine.build_number"/>
-    <property name="PJHEngine.locale" value="kor" if="${not property::exists(arg.locale)}"/>
+        property="PJHEngine.build_number"/>
+    <property name="PJHEngine.locale" value="kor"/>
+    <property name="PJHEngine.locale" value="${arg.locale}" if="${property::exists(arg.locale)}"/>
 
     <fileset id="runtime.PJHEngine.vcproj"
              basedir="${project::get-base-directory()}">
         <include name="${source-dir}/*"/>
         <include name="${include-dir}/*"/> 
     </fileset>
+
+    <!-- external packages -->
+    <property name="Library.boost"          value="boost_1_59_0"/>
+    <property name="Library.test"           value="xxxx"/>
+
+    <!-- set default value for either using library or not. -->
+    <property name="LIB_USE_BOOST"          value="True"/>
+    <property name="LIB_USE_TEST"           value="True"/>
+
+    <!-- set use_lib flag as locale -->
+    <if test="${PJHEngine.locale=='kor'}">
+        <property name="LIB_USE_TEST"           value="False"/>  
+    </if>
 
     <!-- Targets -->
     <!-- TODO::Define target prepare for build, build for debug, build for release, run and open sln -->
@@ -37,7 +57,6 @@
         <tstamp property="build.buildtime" pattern="yyyy MM dd"/>
         <echo message="build time : ${build.buildtime}" />
 
-        
 
         <property name="build.debug"    value="${PJHEngine.debug}"/>
         <property name="build.bin"      value="${bin-dir}"/>
@@ -46,14 +65,43 @@
         <echo message="prepare-build Done."/>
     </target>
 
-    <target name="build-libarary" depends="prepare-build">
-        <echo message="will bulid target name - build-library"/>
+    <!-- Build External library. -->
+    <target name="build-library" depends="prepare-build">
+        <echo message="will bulid target name"/>
+        
+        <!-- build boost library -->
+        <echo message="LIB_USE_BOOST        = ${LIB_USE_BOOST}"/>
+        <if test="${LIB_USE_BOOST=='True'}">
+            <property name="lib_boost_dir" value="${packages-path}/boost/${Library.boost}"/>
+            <if test="${not directory::exists(lib_boost_dir)}">
+                <property name="_build_error_reason" value="not found boost directory"/>
+                <call target="build-failed"/>
+            </if>
+            <property name="lib_boost_exe" value="${lib_boost_dir}/b2.exe"/>
+            <if test="${not file::exists(lib_boost_exe)}">
+                <exec program="${lib_boost_dir}/bootstrap.bat"
+                      workingdir="${lib_boost_dir}"/> 
+            </if>
+            <exec program="${lib_boost_exe}" workingdir="${lib_boost_dir}"/> 
+            <if test="${not directory::exists(bin.dll-path)}">
+                <property name="_build_error_reason" value="don't create 'stage/lib' directory"/>
+                <call target="build-failed"/>
+            </if>
+            <copy todir="${bin.dll-path}">
+                <fileset basedir="${lib_boost_dir}/stage/lib">
+                    <include name="*.lib"/>
+                </fileset>
+            </copy>
+        </if>
 
-        <property name="Library.boost" value="true"/>
-        <property name="Library.test"  value="false"/>
+        <!-- build etc library... wil be added if you need something. -->
+        <echo message="Something library will be added..." />
 
+        <call target="all-param-print"/>
     </target>
 
+
+    <!-- Command build mode targets -->
     <target name="build-debug" if="${debug}" depends="prepare-build">
         <echo message="Buliding build-debug mode" />
         <mkdir dir="${build.bin}"/>
@@ -62,19 +110,41 @@
 
     <target name="build-release" unless="${debug}" depends="prepare-build">
         <echo message="Buliding build-release mode" />
-
-
     </target>
 
     <target name="build" depends="prepare-build">
         <echo message="Buliding buildmode" />
-
-
-
         <call target="all-param-print"/>
     </target>
-    
+
+    <!-- For information.. -->
     <target name="all-param-print">
+        <!--
+        <script language="C#">
+            <references>
+                <include name="System.dll"/>
+            </references>
+            <imports>
+                <import namespace="System.Collections.Generic"/>
+            </imports>
+            <code>
+                <![CDATA[
+                public static void ScriptMain(Project project)
+                {
+                    SortedDictionary<string, string> sorted = new SortedDictionary<string, string>();
+                    foreach( DictionaryEntry entry in project.Properties) 
+                    {
+                        sorted.Add((string)entry.Key, (string)entry.Value);
+                    }
+                    foreach( KeyValuePair<string, string> entry in sorted )
+                    {
+                        project.Log(Level.Info, "{0}           ={1}", entry.Key, entry.Value); 
+                    }
+                }
+                ]]>
+            </code>
+        </script>
+        --> 
         <echo message="PJHEngine.name             =${PJHEngine.name}"/>
         <echo message="PJHEngine.debug            =${PJHEngine.debug}"/>
         <echo message="PJHEngine.locale           =${PJHEngine.locale}"/> 
@@ -85,11 +155,16 @@
         <echo message="build.bin.dll              =${build.bin.dll}"/>
         <echo message=""/>
         <if test="${property::exists('Library.boost')}">
-            <echo message="Library.boost              =${Library.boost}"/>
+            <echo message="Library.boost            =${Library.boost}[${LIB_USE_BOOST}]"/>
         </if>
         <if test="${property::exists('Library.test')}">
-            <echo message="Library.test               =${Library.test}"/>
+            <echo message="Library.test             =${Library.test}[${LIB_USE_TEST}]"/>
         </if>
     </target>
-    
+
+    <target name="build-failed">
+        <echo message="Build Failed... "/>
+        <echo message="Reason is ${_build_error_reason}"/>
+        <fail/>
+    </target>
 </project>

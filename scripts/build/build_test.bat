@@ -2,7 +2,7 @@
 
 @pushd %PROJECT_ROOT_PATH%
 
-call %TOOL_NANT_PATH%\Nant.exe -buildfile:PJHEngine.build -D:arg.debug=true -D:arg.locale="kor" %*
+call %TOOL_NANT_PATH%\Nant.exe build-library -buildfile:PJHEngine.build -D:arg.debug=true -D:arg.locale=kor %*
 
 @popd 
 
