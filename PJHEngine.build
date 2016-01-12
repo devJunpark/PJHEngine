@@ -1,7 +1,9 @@
 <?xml version="1.0"?>
 <project name="PJHEngine" default="build" basedir=".">
-    <!-- For debugging.. -->
+    <!-- properties for module targets.. -->
     <property name="_build_error_reason" value=""/>
+    <property name="_copy_to_name"      value=""/>
+    <property name="_copy_from_name"    value=""/>
 
     <!-- Properties for path -->
     <property name="build-dir"    value="build"/>
@@ -11,9 +13,12 @@
     <property name="bin.dll-dir"  value="${bin-dir}/dlls"/>
     <property name="source-dir"   value="source"/>
     <property name="include-dir"  value="include"/>
-
-    <property name="packages-path"  value="${project::get-base-directory()}/${packages-dir}"/>
-    <property name="bin.dll-path"   value="${project::get-base-directory()}/${bin.dll-dir}"/>
+    
+    <property name="root-path"              value="${project::get-base-directory()}"/>
+    <property name="include-path"           value="${root-path}/${include-dir}"/>
+    <property name="packages-path"          value="${root-path}/${packages-dir}"/>
+    <property name="bin.dll-path"           value="${root-path}/${bin.dll-dir}"/>
+    <property name="external-include-path"  value="${packages-path}/includes"/>
 
     <!-- Properties for filename -->
     <property name="build-number" value="build_number"/>
@@ -92,7 +97,13 @@
                     <include name="*.lib"/>
                 </fileset>
             </copy>
+
+            <property name="_copy_to_name"      value="&quot;${lib_boost_dir}/boost&quot;"/>
+            <property name="_copy_from_name"    value="&quot;${external-include-path}/boost&quot;"/>
+            <call target="create-link"/>
         </if>
+
+
 
         <!-- build etc library... wil be added if you need something. -->
         <echo message="Something library will be added..." />
@@ -162,6 +173,22 @@
         </if>
     </target>
 
+
+    <!-- Module targets for building. -->
+
+    <!-- This target need to set properties that _copy_to_name and _copy_from_name -->
+    <target name="create-link">
+        <echo message="will symbolic create link files or directories"/>
+        <echo message="${_copy_to_name} to ${_copy_from_name}"/>
+        <mkdir dir="${external-include-path}" if="${not directory::exists(external-include-path)}"/>
+        <exec program="cmd.exe" workingdir="${root-path}" 
+              commandline="/c mklink /D &quot;${external-include-path}/boost&quot; &quot;${lib_boost_dir}/boost&quot;"
+              resultproperty="resultstored" failonerror="false"/>
+          <echo message="result stored : ${resultstored}"/>
+        <call target="build-failed" if="${resultstored!='0'}"/>  
+    </target>
+
+    <!-- This target need to set property of _build_error_reason -->
     <target name="build-failed">
         <echo message="Build Failed... "/>
         <echo message="Reason is ${_build_error_reason}"/>

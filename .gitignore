@@ -158,4 +158,5 @@ $RECYCLE.BIN/
 packages/boost/
 packages/boost/boost_1_59_0/bin.v2
 packages/boost/boost_1_59_0/stage
+packages/includes
 bin

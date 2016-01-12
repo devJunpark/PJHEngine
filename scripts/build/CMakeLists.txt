@@ -84,7 +84,7 @@ if(EXISTS "$ENV{TOOL_NANT_PATH}" )
     message("Output : ${PARSING_OUTPUT}")
     if(${PARSING_RESULT})
         message("Error that reason : ${PARSING_ERROR}")
-        message("Failed to add includes directory of external libraries. Check ExternalLibries.Build File.")
+        message("Failed to add includes directory of external libraries. Check targetname build-library in PJHEngine.build file")
     endif()
     link_directories("$ENV{VAR_EXT_LINK_PATH}")
     file(GLOB PJHE_EXT_LINK_FILE_LIST 
