@@ -336,7 +336,7 @@ void PJH_SubFilesystem::cachingFileList()
 		if (isReguFile && isFile)
 			continue;
 		
-		_filechilds.find(iter->
+		//_filechilds.find(iter->
 
 	}
 

@@ -98,8 +98,9 @@
                 </fileset>
             </copy>
 
-            <property name="_copy_to_name"      value="&quot;${lib_boost_dir}/boost&quot;"/>
-            <property name="_copy_from_name"    value="&quot;${external-include-path}/boost&quot;"/>
+            <property name="_copy_from_name"  value="${lib_boost_dir}/boost"/>
+            <property name="_copy_to_name"    value="${external-include-path}/boost"/>
+            <mkdir dir="${external-include-path}" if="${not directory::exists(external-include-path)}"/>
             <call target="create-link"/>
         </if>
 
@@ -179,12 +180,14 @@
     <!-- This target need to set properties that _copy_to_name and _copy_from_name -->
     <target name="create-link">
         <echo message="will symbolic create link files or directories"/>
-        <echo message="${_copy_to_name} to ${_copy_from_name}"/>
-        <mkdir dir="${external-include-path}" if="${not directory::exists(external-include-path)}"/>
-        <exec program="cmd.exe" workingdir="${root-path}" 
-              commandline="/c mklink /D &quot;${external-include-path}/boost&quot; &quot;${lib_boost_dir}/boost&quot;"
+        <echo message="generate link ${_copy_from_name} ----> ${_copy_to_name}"/>
+        <exec program="cmd.exe" workingdir="${root-path}" if="${directory::exists(_copy_to_name)}"
+              commandline="/c rmdir &quot;${_copy_to_name}&quot;"
               resultproperty="resultstored" failonerror="false"/>
-          <echo message="result stored : ${resultstored}"/>
+        <exec program="cmd.exe" workingdir="${root-path}" 
+              commandline="/c mklink /D &quot;${_copy_to_name}&quot; &quot;${_copy_from_name}&quot;"
+              resultproperty="resultstored" failonerror="false"/>
+        <echo message="result stored : ${resultstored}"/>
         <call target="build-failed" if="${resultstored!='0'}"/>  
     </target>
 

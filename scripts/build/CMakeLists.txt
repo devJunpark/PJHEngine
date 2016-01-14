@@ -1,12 +1,13 @@
 cmake_minimum_required (VERSION 3.4.1)
 
-PROJECT(PJHEngine)
+PROJECT($ENV{PROJECT_NAME})
 
 SET(PJHE_ROOT_PATH "${CMAKE_BINARY_DIR}/../..")
-
 SET (BUILD_SHARED_LIBS TRUE)
 
 add_definitions(-DDEBUG -DTEST)
+
+message("Project root path is ${PJHE_ROOT_PATH}")
 
 #### ---------------------------- ####
 #### add sources for Main library ####
@@ -59,9 +60,9 @@ add_library(PJHEngine SHARED
     ${PJHE_INC_FILE_LIST}
 )
 
-#### -------------------------------- ####
-#### setting libraries include folder ####
-#### -------------------------------- ####
+#### ------------------------------------- ####
+#### setting Main libraries include folder ####
+#### ------------------------------------- ####
 target_include_directories(PJHEngine PUBLIC
     "${PJHE_ROOT_PATH}/include"
 )
@@ -72,6 +73,7 @@ target_include_directories(PJHEngine PUBLIC
 if(EXISTS "$ENV{TOOL_NANT_PATH}" )
     message("Nunt located $ENV{TOOL_NANT_PATH}")
     message("${PJHE_ROOT_PATH}/PJHEngine.build will be opend")
+    message("Buliding.... Wait a minute...")
     execute_process(COMMAND 
         $ENV{TOOL_NANT_PATH}/nant build-library
             -buildfile:${PJHE_ROOT_PATH}/PJHEngine.build 
@@ -97,12 +99,24 @@ else()
     message("Failed")
 endif()
 
+### --------------------------------------------------------------------------------------- ###
+### add includes folder of External libraires.                                              ### 
+### It was made by PJHEngine.build file and It must execute build scripts as Administrator. ###
+### --------------------------------------------------------------------------------------- ###
+SET( PJHE_EXT_INC_PATH "${PJHE_ROOT_PATH}/packages/includes")
+if(EXISTS "${PJHE_EXT_INC_PATH}")
+    message("Add external include dirs...")
+    target_include_directories(PJHEngine PUBLIC "${PJHE_EXT_INC_PATH}")
+    message("Done")   
+endif()
+
+### ----------------------- ###
+### change output directory ###
+### ----------------------- ###
+
 ### ------------- ###
 ### For test code ###
 ### ------------- ###
-
-
-
 
 
 
