@@ -25,7 +25,7 @@
 
     <!-- Properties for build -->
     <property name="PJHEngine.debug" value="false"/>
-    <property name="PJHEngine.debug" value="${arg.debug}" if="${property::exists(arg.debug)}"/>
+    <property name="PJHEngine.debug" value="${arg.debug}" if="${property::exists('arg.debug')}"/>
     <property name="PJHEngine.name"  value="${project::get-name()}"/>
     <mkdir dir="${build-dir}" if="${not directory::exists(build-dir)}" />
     <echo message="1.0.0.1" 
@@ -34,13 +34,15 @@
     <loadfile file="${project::get-base-directory()}/${build-dir}/${build-number}"
         property="PJHEngine.build_number"/>
     <property name="PJHEngine.locale" value="kor"/>
-    <property name="PJHEngine.locale" value="${arg.locale}" if="${property::exists(arg.locale)}"/>
+    <property name="PJHEngine.locale" value="${arg.locale}" if="${property::exists('arg.locale')}"/>
 
     <fileset id="runtime.PJHEngine.vcproj"
              basedir="${project::get-base-directory()}">
         <include name="${source-dir}/*"/>
         <include name="${include-dir}/*"/> 
     </fileset>
+    <property name="PJHEngine.rebuild" value="false"/>
+    <property name="PJHEngine.rebuild" value="${arg.rebuild}" if="${property::exists('arg.rebuild')}"/>
 
     <!-- external packages -->
     <property name="Library.boost"          value="boost_1_59_0"/>
@@ -70,6 +72,26 @@
         <echo message="prepare-build Done."/>
     </target>
 
+
+
+    <target name="build-test-test" depends="prepare-build">
+        <echo message="build-test-test target. Just propose for testing."/>
+        <echo message="PJHEngine.rebuild is ${PJHEngine.rebuild}"/>
+        <property name="resultstored" value="-1"/>
+
+        <property name="lib_boost_dir" value="${packages-path}/boost/${Library.boost}"/> 
+        <property name="lib_boost_stage_dir" value="${lib_boost_dir}/stage/lib"/>
+        <exec program="cmd.exe" workingdir="${root-path}"
+              commandline="/c rmdir /s /q &quot;${lib_boost_stage_dir}&quot;"
+              if="${directory::exists(lib_boost_stage_dir) and PJHEngine.rebuild=='true'}"
+              resultproperty="resultstored" failonerror="false"/>
+
+        <echo message="result stored : ${resultstored}"/>
+        <call target="build-failed" if="${resultstored!='0'}"/>
+
+        <echo message="Test END"/>
+    </target>
+     
     <!-- Build External library. -->
     <target name="build-library" depends="prepare-build">
         <echo message="will bulid target name"/>
@@ -87,8 +109,14 @@
                 <exec program="${lib_boost_dir}/bootstrap.bat"
                       workingdir="${lib_boost_dir}"/> 
             </if>
-            <exec program="${lib_boost_exe}" workingdir="${lib_boost_dir}"/> 
-            <if test="${not directory::exists(bin.dll-path)}">
+            <property name="lib_boost_stage_dir" value="${lib_boost_dir}/stage/lib"/>
+            <exec program="cmd.exe" workingdir="${root-path}"
+                  commandline="/c rmdir /s /q &quot;${lib_boost_stage_dir}&quot;"
+                  if="${directory::exists(lib_boost_stage_dir) and PJHEngine.rebuild=='true'}"/>
+
+            <exec program="${lib_boost_exe}" workingdir="${lib_boost_dir}"
+                  commandline="-j 2 variant=debug link=static threading=multi address-model=64 runtime-link=shared"/> 
+            <if test="${not directory::exists(lib_boost_stage_dir)}">
                 <property name="_build_error_reason" value="don't create 'stage/lib' directory"/>
                 <call target="build-failed"/>
             </if>

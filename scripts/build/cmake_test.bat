@@ -1,15 +1,12 @@
 @call _set_variables.bat
 
+@call clean.bat
+
 @set VAR_SCRIPT_BUILD_PATH=%cd%
 
 @pushd %PROJECT_ROOT_PATH%
 
 @set optional=-A x64 -G "Visual Studio 12 2013"
-
-@if exist %VAR_PACKAGE_PATH%\%PROJECT_NAME% (
-    echo %VAR_PACKAGE_PATH%\%PROJECT_NAME% was already generated... will remove.
-    del /s /q %VAR_PACKAGE_PATH%\%PROJECT_NAME%
-)
 
 @if exist %VAR_SCRIPT_BUILD_PATH%\CMakeLists.txt (
     robocopy %VAR_SCRIPT_BUILD_PATH%\ %VAR_PACKAGE_PATH%\%PROJECT_NAME%\ CMakeLists.txt

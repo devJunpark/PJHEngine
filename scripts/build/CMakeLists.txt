@@ -79,6 +79,8 @@ if(EXISTS "$ENV{TOOL_NANT_PATH}" )
             -buildfile:${PJHE_ROOT_PATH}/PJHEngine.build 
             -D:arg.debug=true 
             -D:arg.locale="kor"
+			#-D:arg.rebuild="$ENV{VAR_EXT_LINK_REBUILD}"
+			-D:arg.rebuild="true"
         RESULT_VARIABLE PARSING_RESULT
         OUTPUT_VARIABLE PARSING_OUTPUT
         ERROR_VARIABLE PARSING_ERROR
