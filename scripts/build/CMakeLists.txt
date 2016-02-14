@@ -3,7 +3,8 @@ cmake_minimum_required (VERSION 3.4.1)
 PROJECT($ENV{PROJECT_NAME})
 
 SET(PJHE_ROOT_PATH "${CMAKE_BINARY_DIR}/../..")
-SET (BUILD_SHARED_LIBS TRUE)
+SET(PROTO_ROOT_PATH "${PJHE_ROOT_PATH}/$ENV{VAR_PROTOTYPE_PROJECT_NAME}")
+SET(BUILD_SHARED_LIBS TRUE)
 
 add_definitions(-DDEBUG -DTEST)
 
@@ -93,7 +94,7 @@ if(EXISTS "$ENV{TOOL_NANT_PATH}" )
     link_directories("$ENV{VAR_EXT_LINK_PATH}")
     file(GLOB PJHE_EXT_LINK_FILE_LIST 
             "$ENV{VAR_EXT_LINK_PATH}/*.lib"
-            "$ENV{VAR_EXT_LINK_PATH}/*.dll"
+            #"$ENV{VAR_EXT_LINK_PATH}/*.dll"
     )
     target_link_libraries(PJHEngine ${PJHE_EXT_LINK_FILE_LIST})
 else()
@@ -112,9 +113,93 @@ if(EXISTS "${PJHE_EXT_INC_PATH}")
     message("Done")   
 endif()
 
-### ----------------------- ###
-### change output directory ###
-### ----------------------- ###
+
+### **************************************************************************************** ###
+### **************************************************************************************** ###
+###                                    FOR PROTOTYPE PROJECT                                 ###
+### **************************************************************************************** ###
+### **************************************************************************************** ###
+
+### --------------------------------- ###
+### add sources for Prototype project ###
+### --------------------------------- ###
+message("Add source files for Prototype...")
+file(GLOB PROTO_SRC_DIR_LIST
+    "${PROTO_ROOT_PATH}/source/*"
+)
+
+SET (PROTO_SRC_FILE_LIST "")
+foreach( _srcfolder ${PROTO_SRC_DIR_LIST})
+    if(NOT IS_DIRECTORY ${_srcfolder})
+        message("    was included source file - ${_srcfolder}")
+        LIST(APPEND PROTO_SRC_FILE_LIST ${_srcfolder})
+    else()
+        message("    was included source folder - ${_srcfolder}")
+        file(GLOB _srcfiles 
+                "${_srcfolder}/*.cpp" 
+                "${_srcfolder}/*.c"
+        )
+        get_filename_component(_foldername ${_srcfolder} NAME)
+        LIST(APPEND PROTO_SRC_FILE_LIST ${_srcfiles})    
+        source_group("${_foldername}" FILES ${_srcfiles})
+    endif()
+endforeach()
+file(GLOB PROTO_SRC_FILE_PATH "${PROTO_SRC_FILE_LIST}")
+message("Done")
+
+### ---------------------------------- ###
+### add includes for Prototype project ###
+### ---------------------------------- ###
+message("Add include files for Prototype...")
+file(GLOB PROTO_INC_DIR_LIST
+    "${PROTO_ROOT_PATH}/include/*"
+)
+
+SET (PROTO_INC_FILE_LIST "")
+foreach( _incfolder ${PROTO_INC_DIR_LIST})
+    if(NOT IS_DIRECTORY ${_incfolder})
+        message("    was included header file - ${_incfolder}")
+        LIST(APPEND PROTO_INC_FILE_LIST ${_incfolder})
+    else()
+        message("    was included header folder - ${_incfolder}")
+        file(GLOB _incfiles
+            "${_incfolder}/*.h"
+            "${_incfolder}/*.hpp"
+        )
+        get_filename_component(_foldername ${_incfolder} NAME)
+        LIST(APPEND PROTO_INC_FILE_LIST ${_incfiles})
+        source_group("${_foldername}" FILES ${_incfiles})
+    endif()
+endforeach()
+file(GLOB PROTO_INC_DIR_LIST "${PROTO_INC_FILE_LIST}")
+message("Done")              
+
+### ----------------------------------------------------------------------- ###
+### add Prototype project for that is capable for testing of PJHEngine Dll. ###
+### ----------------------------------------------------------------------- ###
+ADD_EXECUTABLE($ENV{VAR_PROTOTYPE_PROJECT_NAME}
+    ${PROTO_SRC_FILE_LIST}
+    ${PROTO_INC_FILE_LIST}
+)
+
+### --------------------------------------------------------------------------------------- ###
+### ** FOR PROTOTYPE PROJECT **                                                             ###
+### add includes folder of External libraires.                                              ### 
+### It was made by PJHEngine.build file and It must execute build scripts as Administrator. ###
+### --------------------------------------------------------------------------------------- ###
+SET( PJHE_EXT_INC_PATH "${PJHE_ROOT_PATH}/packages/includes")
+if(EXISTS "${PJHE_EXT_INC_PATH}")
+    message("Add external include dirs for prototype......")
+    target_include_directories($ENV{VAR_PROTOTYPE_PROJECT_NAME} PUBLIC "${PJHE_EXT_INC_PATH}")
+    message("Done")   
+endif()
+
+if(EXISTS "${PJHE_ROOT_PATH}/include")
+    message("Add PJHEngine Header's path for prototype.....")
+    target_include_directories($ENV{VAR_PROTOTYPE_PROJECT_NAME} PUBLIC "${PJHE_ROOT_PATH}/include")
+    message("Done")
+endif()
+
 
 ### ------------- ###
 ### For test code ###
