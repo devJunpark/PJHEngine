@@ -43,6 +43,8 @@
     </fileset>
     <property name="PJHEngine.rebuild" value="false"/>
     <property name="PJHEngine.rebuild" value="${arg.rebuild}" if="${property::exists('arg.rebuild')}"/>
+    <property name="PJHEngine.outputtype" value="lib"/>
+    <property name="PJHEngine.outputtype" value="${arg.outputtype}" if="${property::exists('arg.outputtype')}"/>
 
     <!-- external packages -->
     <property name="Library.boost"          value="boost_1_59_0"/>
@@ -63,15 +65,9 @@
         <echo message="buliding prepare-build"/>
         <tstamp property="build.buildtime" pattern="yyyy MM dd"/>
         <echo message="build time : ${build.buildtime}" />
-
-
-        <property name="build.debug"    value="${PJHEngine.debug}"/>
-        <property name="build.bin"      value="${bin-dir}"/>
-        <property name="build.bin.dll"  value="${bin.dll-dir}"/>
            
         <echo message="prepare-build Done."/>
     </target>
-
 
 
     <target name="build-test-test" depends="prepare-build">
@@ -110,18 +106,21 @@
                       workingdir="${lib_boost_dir}"/> 
             </if>
             <property name="lib_boost_stage_dir" value="${lib_boost_dir}/stage/lib"/>
-            <exec program="cmd.exe" workingdir="${root-path}"
-                  commandline="/c rmdir /s /q &quot;${lib_boost_stage_dir}&quot;"
-                  if="${directory::exists(lib_boost_stage_dir) and PJHEngine.rebuild=='true'}"/>
-
-            <exec program="${lib_boost_exe}" workingdir="${lib_boost_dir}"
-                  commandline="-j 2 variant=debug link=static threading=multi address-model=64 runtime-link=shared"/> 
+            <if test="${PJHEngine.rebuild=='true'}">
+                <echo message="in the rebuild section"/>
+                <exec program="cmd.exe" workingdir="${root-path}"
+                      commandline="/c rmdir /s /q &quot;${lib_boost_stage_dir}&quot;"
+                      if="${directory::exists(lib_boost_stage_dir) and PJHEngine.rebuild=='true'}"/>
+    
+                <exec program="${lib_boost_exe}" workingdir="${lib_boost_dir}"
+                      commandline="-j 2 variant=debug link=static threading=multi address-model=64 runtime-link=shared"/> 
+            </if>
             <if test="${not directory::exists(lib_boost_stage_dir)}">
                 <property name="_build_error_reason" value="don't create 'stage/lib' directory"/>
                 <call target="build-failed"/>
             </if>
             <copy todir="${bin.dll-path}">
-                <fileset basedir="${lib_boost_dir}/stage/lib">
+                <fileset basedir="${lib_boost_stage_dir}">
                     <include name="*.lib"/>
                 </fileset>
             </copy>
@@ -138,18 +137,6 @@
         <echo message="Something library will be added..." />
 
         <call target="all-param-print"/>
-    </target>
-
-
-    <!-- Command build mode targets -->
-    <target name="build-debug" if="${debug}" depends="prepare-build">
-        <echo message="Buliding build-debug mode" />
-        <mkdir dir="${build.bin}"/>
-        
-    </target>
-
-    <target name="build-release" unless="${debug}" depends="prepare-build">
-        <echo message="Buliding build-release mode" />
     </target>
 
     <target name="build" depends="prepare-build">
@@ -185,14 +172,12 @@
             </code>
         </script>
         --> 
-        <echo message="PJHEngine.name             =${PJHEngine.name}"/>
+        <echo message="PJHEngine.name             =${PJHEngine.name}"/> 
         <echo message="PJHEngine.debug            =${PJHEngine.debug}"/>
         <echo message="PJHEngine.locale           =${PJHEngine.locale}"/> 
+        <echo message="PJHEngine.rebuild          =${PJHEngine.rebuild}"/>
+        <echo message="PJHEngine.outputtype       =${PJHEngine.outputtype}"/>
         <echo message="PJHEngine.build_number     =${PJHEngine.build_number}"/>
-        <echo message=""/>
-        <echo message="build.debug                =${build.debug}"/>
-        <echo message="build.bin                  =${build.bin}"/>
-        <echo message="build.bin.dll              =${build.bin.dll}"/>
         <echo message=""/>
         <if test="${property::exists('Library.boost')}">
             <echo message="Library.boost            =${Library.boost}[${LIB_USE_BOOST}]"/>

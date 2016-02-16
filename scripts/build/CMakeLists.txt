@@ -6,6 +6,15 @@ SET(PJHE_ROOT_PATH "${CMAKE_BINARY_DIR}/../..")
 SET(PROTO_ROOT_PATH "${PJHE_ROOT_PATH}/$ENV{VAR_PROTOTYPE_PROJECT_NAME}")
 SET(BUILD_SHARED_LIBS TRUE)
 
+
+### --------------------------------- ###
+### Arguments that was passed by user ###
+### --------------------------------- ###
+SET(arg.debug "true" CACHE STRING "need to set either debug or release. If it set true, then PJHEngine will be build a debug mode")
+SET(arg.locale "kor" CACHE STRING "target locale of PJHEngine")
+SET(arg.rebuild "false" CACHE STRING "set either need to rebulid or not.")
+SET(arg.outputtype "lib" CACHE STRING "determine format of output of PJHEngine. can be lib or dll.")
+
 add_definitions(-DDEBUG -DTEST)
 
 message("Project root path is ${PJHE_ROOT_PATH}")
@@ -56,7 +65,11 @@ message("Done")
 #### ------------------- ####
 #### create main library #### 
 #### ------------------- ####
-add_library(PJHEngine SHARED
+SET(_outputtype STATIC)
+if( ${arg.outputtype} STREQUAL "dll" )
+    SET(_outputtype SHARED)
+endif()
+add_library(PJHEngine ${_outputtype} 
     ${PJHE_SRC_FILE_LIST}
     ${PJHE_INC_FILE_LIST}
 )
@@ -78,10 +91,12 @@ if(EXISTS "$ENV{TOOL_NANT_PATH}" )
     execute_process(COMMAND 
         $ENV{TOOL_NANT_PATH}/nant build-library
             -buildfile:${PJHE_ROOT_PATH}/PJHEngine.build 
-            -D:arg.debug=true 
-            -D:arg.locale="kor"
-			#-D:arg.rebuild="$ENV{VAR_EXT_LINK_REBUILD}"
-			-D:arg.rebuild="true"
+            -D:arg.debug=${arg.debug}
+            -D:arg.locale=${arg.locale}
+			-D:arg.rebuild=${arg.rebuild}
+            -D:arg.outputtype=${arg.outputtype}
+            #$ENV{VAR_EXT_LINK_REBUILD}
+            #-D:arg.rebuild="true"
         RESULT_VARIABLE PARSING_RESULT
         OUTPUT_VARIABLE PARSING_OUTPUT
         ERROR_VARIABLE PARSING_ERROR
