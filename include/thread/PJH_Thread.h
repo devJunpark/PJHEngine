@@ -1,11 +1,14 @@
 #pragma  once
+
+#include "PJH_DllDef.h"
+
 #include <thread>
 #include <string>
 #include <mutex>
 #include <assert.h>
 
 namespace PJH {
-class Thread
+class PJH_DLL_API Thread
 {
 private:
 	std::mutex _mutex;

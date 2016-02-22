@@ -160,4 +160,6 @@ packages/boost/boost_1_59_0/bin.v2
 packages/boost/boost_1_59_0/stage
 packages/includes
 packages/PJHEngine
+build/PJHEngine
+build/Prototype
 bin

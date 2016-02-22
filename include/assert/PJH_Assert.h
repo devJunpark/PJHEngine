@@ -3,7 +3,7 @@
 
 #include "log/PJH_Log.h"
 
-#if defined(DEBUG)
+#if defined(_DEBUG)
 /*
 why do This preprocessor need to redefine?
 __func__			was added to C++ in C++11.

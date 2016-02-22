@@ -1,4 +1,7 @@
 #pragma once
+
+#include "PJH_DllDef.h"
+
 #include <vector>
 #include <memory>
 
@@ -11,7 +14,7 @@
 
 namespace PJH {
 namespace Filesystem {
-class PJH_FilesystemManager
+class PJH_DLL_API PJH_FilesystemManager
 {
 private:
 	static PJH_FilesystemManager* _instance;

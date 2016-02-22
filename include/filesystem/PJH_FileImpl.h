@@ -1,6 +1,8 @@
 #ifndef __PJH_INCLUDE_PJH_FILE_IMPL_H__
 #define __PJH_INCLUDE_PJH_FILE_IMPL_H__
 
+#include "PJH_DllDef.h"
+
 #include <string>
 #include <cstdint>
 #include <fstream>
@@ -9,7 +11,7 @@
 namespace PJH {
 namespace Filesystem{
 namespace Impl {
-class PJH_FileImpl 
+class PJH_DLL_API PJH_FileImpl 
 {
 public : 
 	

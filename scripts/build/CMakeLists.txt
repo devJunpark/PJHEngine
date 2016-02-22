@@ -6,6 +6,10 @@ SET(PJHE_ROOT_PATH "${CMAKE_BINARY_DIR}/../..")
 SET(PROTO_ROOT_PATH "${PJHE_ROOT_PATH}/$ENV{VAR_PROTOTYPE_PROJECT_NAME}")
 SET(BUILD_SHARED_LIBS TRUE)
 
+SET(BUILD_MODE "debug")
+if(${arg.debug} STREQUAL "false")
+    SET(BUILD_MODE "release")
+endif()
 
 ### --------------------------------- ###
 ### Arguments that was passed by user ###
@@ -15,7 +19,12 @@ SET(arg.locale "kor" CACHE STRING "target locale of PJHEngine")
 SET(arg.rebuild "false" CACHE STRING "set either need to rebulid or not.")
 SET(arg.outputtype "lib" CACHE STRING "determine format of output of PJHEngine. can be lib or dll.")
 
-add_definitions(-DDEBUG -DTEST)
+### --------------------------------------- ###
+### add pre-definitions for all of projects ###
+### --------------------------------------- ###
+add_definitions(-DTEST)             
+
+###################################
 
 message("Project root path is ${PJHE_ROOT_PATH}")
 
@@ -30,13 +39,18 @@ file(GLOB PJHE_SRC_DIR_LIST
 SET (PJHE_SRC_FILE_LIST "")
 foreach( _srcfolder ${PJHE_SRC_DIR_LIST})
     message("    ${_srcfolder}")
-    file(GLOB _srcfiles 
-            "${_srcfolder}/*.cpp" 
-            "${_srcfolder}/*.c"
-    )
-    get_filename_component(_foldername ${_srcfolder} NAME)
-    LIST(APPEND PJHE_SRC_FILE_LIST ${_srcfiles})    
-    source_group("source\\${_foldername}" FILES ${_srcfiles})
+    if(NOT IS_DIRECTORY ${_srcfolder})
+        LIST(APPEND PJHE_SRC_FILE_LIST ${_srcfolder})
+        source_group("source" FILES ${_srcfolder})
+    else()
+        file(GLOB _srcfiles 
+                "${_srcfolder}/*.cpp" 
+                "${_srcfolder}/*.c"
+        )
+        get_filename_component(_foldername ${_srcfolder} NAME)
+        LIST(APPEND PJHE_SRC_FILE_LIST ${_srcfiles})    
+        source_group("source\\${_foldername}" FILES ${_srcfiles})
+    endif()
 endforeach()
 file(GLOB PJHE_SRC_FILE_PATH "${PJHE_SRC_FILE_LIST}")
 message("Done")
@@ -51,13 +65,18 @@ file(GLOB PJHE_INC_DIR_LIST
 SET (PJHE_INC_FILE_LIST "")
 foreach( _incfolder ${PJHE_INC_DIR_LIST})
     message("    ${_incfolder}")
-    file(GLOB _incfiles
-        "${_incfolder}/*.h"
-        "${_incfolder}/*.hpp"
-    )
-    get_filename_component(_foldername ${_incfolder} NAME)
-    LIST(APPEND PJHE_INC_FILE_LIST ${_incfiles})
-    source_group("include\\${_foldername}" FILES ${_incfiles})
+    if(NOT IS_DIRECTORY ${_incfolder})
+        LIST(APPEND PJHE_INC_FILE_LIST ${_incfolder})
+        source_group("include" FILES ${_incfolder})
+    else()
+        file(GLOB _incfiles
+            "${_incfolder}/*.h"
+            "${_incfolder}/*.hpp"
+        )
+        get_filename_component(_foldername ${_incfolder} NAME)
+        LIST(APPEND PJHE_INC_FILE_LIST ${_incfiles})
+        source_group("include\\${_foldername}" FILES ${_incfiles})
+    endif()
 endforeach()
 file(GLOB PJHE_INC_FILE_PATH "${PJHE_INC_FILE_LIST}")
 message("Done")
@@ -69,15 +88,26 @@ SET(_outputtype STATIC)
 if( ${arg.outputtype} STREQUAL "dll" )
     SET(_outputtype SHARED)
 endif()
-add_library(PJHEngine ${_outputtype} 
+add_library($ENV{PROJECT_NAME} ${_outputtype} 
     ${PJHE_SRC_FILE_LIST}
     ${PJHE_INC_FILE_LIST}
+)
+
+SET_TARGET_PROPERTIES($ENV{PROJECT_NAME}
+    PROPERTIES
+    LIBRARY_OUTPUT_DIRECTORY "$ENV{VAR_PROJECT_BUILD_OUTPUT_PATH}"
+    ARCHIVE_OUTPUT_DIRECTORY "$ENV{VAR_PROJECT_BUILD_OUTPUT_PATH}"
+    RUNTIME_OUTPUT_DIRECTORY "$ENV{VAR_PROJECT_BUILD_OUTPUT_PATH}"
+)
+
+target_compile_definitions($ENV{PROJECT_NAME}
+    PUBLIC __PJH_DLL_API 
 )
 
 #### ------------------------------------- ####
 #### setting Main libraries include folder ####
 #### ------------------------------------- ####
-target_include_directories(PJHEngine PUBLIC
+target_include_directories($ENV{PROJECT_NAME} PUBLIC
     "${PJHE_ROOT_PATH}/include"
 )
 
@@ -106,12 +136,16 @@ if(EXISTS "$ENV{TOOL_NANT_PATH}" )
         message("Error that reason : ${PARSING_ERROR}")
         message("Failed to add includes directory of external libraries. Check targetname build-library in PJHEngine.build file")
     endif()
-    link_directories("$ENV{VAR_EXT_LINK_PATH}")
+    #link_directories("$ENV{VAR_EXT_LINK_PATH}")
     file(GLOB PJHE_EXT_LINK_FILE_LIST 
             "$ENV{VAR_EXT_LINK_PATH}/*.lib"
             #"$ENV{VAR_EXT_LINK_PATH}/*.dll"
     )
-    target_link_libraries(PJHEngine ${PJHE_EXT_LINK_FILE_LIST})
+    target_link_libraries($ENV{PROJECT_NAME} ${PJHE_EXT_LINK_FILE_LIST})
+    #add_library(boost_library STATIC IMPORTED ${PJHE_EXT_LINK_FILE_LIST})
+    #set_target_properties(boost_library PROPERTIES IMPORTED_LOCATION "$ENV{VAR_EXT_LINK_PATH}")
+    #target_link_libraries($ENV{PROJECT_NAME} boost_library)
+
 else()
     message("Not found nunt path. Nunt path was not defined in TOOL_NANT_PATH variable.")
     message("Failed")
@@ -124,7 +158,7 @@ endif()
 SET( PJHE_EXT_INC_PATH "${PJHE_ROOT_PATH}/packages/includes")
 if(EXISTS "${PJHE_EXT_INC_PATH}")
     message("Add external include dirs...")
-    target_include_directories(PJHEngine PUBLIC "${PJHE_EXT_INC_PATH}")
+    target_include_directories($ENV{PROJECT_NAME} PUBLIC "${PJHE_EXT_INC_PATH}")
     message("Done")   
 endif()
 
@@ -146,17 +180,18 @@ file(GLOB PROTO_SRC_DIR_LIST
 SET (PROTO_SRC_FILE_LIST "")
 foreach( _srcfolder ${PROTO_SRC_DIR_LIST})
     if(NOT IS_DIRECTORY ${_srcfolder})
-        message("    was included source file - ${_srcfolder}")
+        message("    was included source file for Prototype- ${_srcfolder}")
         LIST(APPEND PROTO_SRC_FILE_LIST ${_srcfolder})
+        source_group("source" FILES ${_srcfolder})
     else()
-        message("    was included source folder - ${_srcfolder}")
+        message("    was included source folder for Prototype - ${_srcfolder}")
         file(GLOB _srcfiles 
                 "${_srcfolder}/*.cpp" 
                 "${_srcfolder}/*.c"
         )
         get_filename_component(_foldername ${_srcfolder} NAME)
         LIST(APPEND PROTO_SRC_FILE_LIST ${_srcfiles})    
-        source_group("${_foldername}" FILES ${_srcfiles})
+        source_group("source\\${_foldername}" FILES ${_srcfiles})
     endif()
 endforeach()
 file(GLOB PROTO_SRC_FILE_PATH "${PROTO_SRC_FILE_LIST}")
@@ -175,6 +210,7 @@ foreach( _incfolder ${PROTO_INC_DIR_LIST})
     if(NOT IS_DIRECTORY ${_incfolder})
         message("    was included header file - ${_incfolder}")
         LIST(APPEND PROTO_INC_FILE_LIST ${_incfolder})
+        source_group("include" FILES ${_incfolder})
     else()
         message("    was included header folder - ${_incfolder}")
         file(GLOB _incfiles
@@ -183,7 +219,7 @@ foreach( _incfolder ${PROTO_INC_DIR_LIST})
         )
         get_filename_component(_foldername ${_incfolder} NAME)
         LIST(APPEND PROTO_INC_FILE_LIST ${_incfiles})
-        source_group("${_foldername}" FILES ${_incfiles})
+        source_group("include\\${_foldername}" FILES ${_incfiles})
     endif()
 endforeach()
 file(GLOB PROTO_INC_DIR_LIST "${PROTO_INC_FILE_LIST}")
@@ -196,6 +232,15 @@ ADD_EXECUTABLE($ENV{VAR_PROTOTYPE_PROJECT_NAME}
     ${PROTO_SRC_FILE_LIST}
     ${PROTO_INC_FILE_LIST}
 )
+ADD_DEPENDENCIES($ENV{VAR_PROTOTYPE_PROJECT_NAME} $ENV{PROJECT_NAME})
+
+SET_TARGET_PROPERTIES($ENV{VAR_PROTOTYPE_PROJECT_NAME}
+    PROPERTIES
+    LIBRARY_OUTPUT_DIRECTORY "$ENV{VAR_PROTOTYPE_BUILD_OUTPUT_PATH}"
+    ARCHIVE_OUTPUT_DIRECTORY "$ENV{VAR_PROTOTYPE_BUILD_OUTPUT_PATH}"
+    RUNTIME_OUTPUT_DIRECTORY "$ENV{VAR_PROTOTYPE_BUILD_OUTPUT_PATH}"
+)
+
 
 ### --------------------------------------------------------------------------------------- ###
 ### ** FOR PROTOTYPE PROJECT **                                                             ###
@@ -215,6 +260,22 @@ if(EXISTS "${PJHE_ROOT_PATH}/include")
     message("Done")
 endif()
 
+
+target_link_libraries($ENV{VAR_PROTOTYPE_PROJECT_NAME} 
+    "$ENV{VAR_PROJECT_BUILD_OUTPUT_PATH}/${BUILD_MODE}/$ENV{PROJECT_NAME}.lib"
+)
+
+add_custom_command(TARGET $ENV{VAR_PROTOTYPE_PROJECT_NAME}
+    PRE_BUILD 
+    COMMAND robocopy ARGS \"$ENV{VAR_PROJECT_BUILD_OUTPUT_PATH}/${BUILD_MODE}/\"
+                     ARGS \"$ENV{VAR_PROTOTYPE_BUILD_OUTPUT_PATH}/${BUILD_MODE}/\"
+                     ARGS \"$ENV{PROJECT_NAME}.dll\"
+    COMMENT "Copy PJHEngine.dll for Prototype"
+)
+
+#target_compile_definitions($ENV{VAR_PROTOTYPE_PROJECT_NAME}
+#    PUBLIC __PJH_DLL_API 
+#)
 
 ### ------------- ###
 ### For test code ###

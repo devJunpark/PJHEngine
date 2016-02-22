@@ -1,6 +1,8 @@
 #ifndef __PJH_INCLUDE_PJH_SUB_FILESYSTEM_H__
 #define __PJH_INCLUDE_PJH_SUB_FILESYSTEM_H__
 
+#include "PJH_DllDef.h"
+
 #include <string>
 #include <map>
 #include <set>
@@ -13,7 +15,7 @@ namespace Filesystem {
 class PJH_SubFilesystem;
 typedef std::shared_ptr<PJH_SubFilesystem> SubFileSystem_Ptr;
 
-class PJH_SubFilesystem 
+class PJH_DLL_API PJH_SubFilesystem 
 {
 friend class PJH_FilesystemManager;
 public :

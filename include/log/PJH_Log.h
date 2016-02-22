@@ -1,6 +1,8 @@
 #ifndef __PJH_INCLUDE_PJH_LOG_H__
 #define __PJH_INCLUDE_PJH_LOG_H__
 
+#include "PJH_DllDef.h"
+
 #include <cstdarg>
 #include <cstdint>
 #include <iostream>
@@ -11,7 +13,7 @@
 #define PJH_FORMATTING_LOG_WITH_TAG(tag, str, ...) \
 	PJH::Logsystem::PJH_Log::formattingLogWithTag("<TAG:"tag"> ", str, __VA_ARGS__);
 
-#if defined(DEBUG)
+#if defined(_DEBUG)
 	#define PJH_LOG(str, ...)			PJH_FORMATTING_LOG_WITHOUT_TAG(str, __VA_ARGS__)
 	#define PJH_TAG_LOG(tag, str, ...)  PJH_FORMATTING_LOG_WITH_TAG(tag, str, __VA_ARGS__)
 #else
@@ -21,7 +23,7 @@
 
 namespace PJH {
 namespace Logsystem {
-class PJH_Log 
+class PJH_DLL_API PJH_Log 
 {
 private : 
 

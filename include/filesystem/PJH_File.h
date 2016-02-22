@@ -1,6 +1,8 @@
 #ifndef __PJH_INCLUDE_PJH_FILE_H__
 #define __PJH_INCLUDE_PJH_FILE_H__
 
+#include "PJH_DllDef.h"
+
 #include <string>
 #include <cstdint>
 #include <memory>
@@ -13,7 +15,7 @@ typedef std::shared_ptr<PJH_File> PJHFile_Ptr;
 namespace Impl {
 	class PJH_FileImpl;
 } // Impl
-class PJH_File
+class PJH_DLL_API PJH_File
 {
 private : 
 	std::shared_ptr < Impl::PJH_FileImpl > _impl;
