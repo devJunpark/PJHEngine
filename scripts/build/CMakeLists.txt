@@ -17,12 +17,20 @@ endif()
 SET(arg.debug "true" CACHE STRING "need to set either debug or release. If it set true, then PJHEngine will be build a debug mode")
 SET(arg.locale "kor" CACHE STRING "target locale of PJHEngine")
 SET(arg.rebuild "false" CACHE STRING "set either need to rebulid or not.")
-SET(arg.outputtype "lib" CACHE STRING "determine format of output of PJHEngine. can be lib or dll.")
+SET(arg.outputtype "dll" CACHE STRING "determine format of output of PJHEngine. can be lib or dll.")
 
 ### --------------------------------------- ###
 ### add pre-definitions for all of projects ###
 ### --------------------------------------- ###
-add_definitions(-DTEST)             
+SET(DEFINITION_OPTIONS "/D \"__PJHENGINE\"")
+if(${arg.outputtype} STREQUAL "dll")
+    SET(DEFINITION_OPTIONS "${DEFINITION_OPTIONS} /D \"__PJH_USE_DLL\"")
+endif()
+add_definitions(
+    ${DEFINITION_OPTIONS}
+)             
+message("Global definition options ---")
+message(${DEFINITION_OPTIONS})
 
 ###################################
 
@@ -100,8 +108,12 @@ SET_TARGET_PROPERTIES($ENV{PROJECT_NAME}
     RUNTIME_OUTPUT_DIRECTORY "$ENV{VAR_PROJECT_BUILD_OUTPUT_PATH}"
 )
 
+SET(PJHE_DEFINITION_OPTIONS __PJHENGINE_LIBRARY)
+if(${arg.outputtype} STREQUAL "dll")
+    SET(PJHE_DEFINITION_OPTIONS ${PJHE_DEFINITION_OPTIONS} -D__PJH_DLL_API)
+endif()
 target_compile_definitions($ENV{PROJECT_NAME}
-    PUBLIC __PJH_DLL_API 
+    PUBLIC ${PJHE_DEFINITION_OPTIONS} 
 )
 
 #### ------------------------------------- ####
@@ -136,16 +148,10 @@ if(EXISTS "$ENV{TOOL_NANT_PATH}" )
         message("Error that reason : ${PARSING_ERROR}")
         message("Failed to add includes directory of external libraries. Check targetname build-library in PJHEngine.build file")
     endif()
-    #link_directories("$ENV{VAR_EXT_LINK_PATH}")
     file(GLOB PJHE_EXT_LINK_FILE_LIST 
             "$ENV{VAR_EXT_LINK_PATH}/*.lib"
             #"$ENV{VAR_EXT_LINK_PATH}/*.dll"
     )
-    target_link_libraries($ENV{PROJECT_NAME} ${PJHE_EXT_LINK_FILE_LIST})
-    #add_library(boost_library STATIC IMPORTED ${PJHE_EXT_LINK_FILE_LIST})
-    #set_target_properties(boost_library PROPERTIES IMPORTED_LOCATION "$ENV{VAR_EXT_LINK_PATH}")
-    #target_link_libraries($ENV{PROJECT_NAME} boost_library)
-
 else()
     message("Not found nunt path. Nunt path was not defined in TOOL_NANT_PATH variable.")
     message("Failed")
@@ -162,6 +168,9 @@ if(EXISTS "${PJHE_EXT_INC_PATH}")
     message("Done")   
 endif()
 
+if(EXISTS $ENV{VAR_EXT_LINK_PATH})
+    target_link_libraries($ENV{PROJECT_NAME} ${PJHE_EXT_LINK_FILE_LIST})
+endif()
 
 ### **************************************************************************************** ###
 ### **************************************************************************************** ###
@@ -232,7 +241,7 @@ ADD_EXECUTABLE($ENV{VAR_PROTOTYPE_PROJECT_NAME}
     ${PROTO_SRC_FILE_LIST}
     ${PROTO_INC_FILE_LIST}
 )
-ADD_DEPENDENCIES($ENV{VAR_PROTOTYPE_PROJECT_NAME} $ENV{PROJECT_NAME})
+#ADD_DEPENDENCIES($ENV{VAR_PROTOTYPE_PROJECT_NAME} $ENV{PROJECT_NAME})
 
 SET_TARGET_PROPERTIES($ENV{VAR_PROTOTYPE_PROJECT_NAME}
     PROPERTIES
@@ -260,18 +269,28 @@ if(EXISTS "${PJHE_ROOT_PATH}/include")
     message("Done")
 endif()
 
+if(EXISTS $ENV{VAR_EXT_LINK_PATH} AND ${arg.outputtype} STREQUAL "lib")
+    target_link_libraries($ENV{VAR_PROTOTYPE_PROJECT_NAME} ${PJHE_EXT_LINK_FILE_LIST})
+endif()
 
 target_link_libraries($ENV{VAR_PROTOTYPE_PROJECT_NAME} 
     "$ENV{VAR_PROJECT_BUILD_OUTPUT_PATH}/${BUILD_MODE}/$ENV{PROJECT_NAME}.lib"
 )
 
-add_custom_command(TARGET $ENV{VAR_PROTOTYPE_PROJECT_NAME}
-    PRE_BUILD 
-    COMMAND robocopy ARGS \"$ENV{VAR_PROJECT_BUILD_OUTPUT_PATH}/${BUILD_MODE}/\"
-                     ARGS \"$ENV{VAR_PROTOTYPE_BUILD_OUTPUT_PATH}/${BUILD_MODE}/\"
-                     ARGS \"$ENV{PROJECT_NAME}.dll\"
-    COMMENT "Copy PJHEngine.dll for Prototype"
+SET(PROTO_DEFINITION_OPTIONS __PJHENGINE_PROTOTYPE)
+target_compile_definitions($ENV{VAR_PROTOTYPE_PROJECT_NAME}
+    PUBLIC ${PROTO_DEFINITION_OPTIONS} 
 )
+
+if(${arg.outputtype} STREQUAL "dll")
+    add_custom_command(TARGET $ENV{VAR_PROTOTYPE_PROJECT_NAME}
+        PRE_BUILD 
+        COMMAND robocopy ARGS \"$ENV{VAR_PROJECT_BUILD_OUTPUT_PATH}/${BUILD_MODE}/\"
+                         ARGS \"$ENV{VAR_PROTOTYPE_BUILD_OUTPUT_PATH}/${BUILD_MODE}/\"
+                         ARGS \"$ENV{PROJECT_NAME}.dll\"
+        COMMENT "Copy PJHEngine.dll for Prototype"
+    )
+endif()
 
 #target_compile_definitions($ENV{VAR_PROTOTYPE_PROJECT_NAME}
 #    PUBLIC __PJH_DLL_API 
