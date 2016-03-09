@@ -4,6 +4,7 @@
 #include "log/PJH_Log.h"
 #include "assert/PJH_Assert.h"
 #include <cinttypes>
+#include "PJH_DllDef.h"
 
 /* 
 @@ TODO : 

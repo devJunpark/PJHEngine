@@ -2,6 +2,8 @@
 
 @call clean.bat
 
+@call copy_sub_cmake.bat
+
 @set VAR_SCRIPT_BUILD_PATH=%cd%
 
 @pushd %PROJECT_ROOT_PATH%
@@ -15,13 +17,23 @@
 @echo --- Build options ---
 @echo   %optional%
 
-@if exist %VAR_SCRIPT_BUILD_PATH%\CMakeLists.txt (
-    robocopy %VAR_SCRIPT_BUILD_PATH%\ %VAR_PACKAGE_PATH%\%PROJECT_NAME%\ CMakeLists.txt
+@if exist %VAR_PACKAGE_PATH%\%PROJECT_NAME%\CMakeLists.txt (
     call %TOOL_CMAKE_PATH%\cmake.exe %optional% "%VAR_PACKAGE_PATH%\%PROJECT_NAME%\CMakeLists.txt"
-    echo Done.
-    
+    echo Done.   
+
     @popd
     @call opensln.bat
 ) else (
     @popd 
 )
+
+::@if exist %VAR_SCRIPT_BUILD_PATH%\CMakeLists.txt (
+::    robocopy %VAR_SCRIPT_BUILD_PATH%\ %VAR_PACKAGE_PATH%\%PROJECT_NAME%\ CMakeLists.txt
+::    call %TOOL_CMAKE_PATH%\cmake.exe %optional% "%VAR_PACKAGE_PATH%\%PROJECT_NAME%\CMakeLists.txt"
+::    echo Done.
+::    
+::    @popd
+::    @call opensln.bat
+::) else (
+::    @popd 
+::)
