@@ -82,9 +82,6 @@ target_compile_definitions($ENV{PROJECT_NAME}
     PUBLIC ${PJHE_DEFINITION_OPTIONS} 
 )
 
-get_target_property(TEST_CMAKE_RUNTIME $ENV{PROJECT_NAME} RUNTIME_OUTPUT_DIRECTORY)
-message("TEST_CMAKE_RUNTIME : ${TEST_CMAKE_RUNTIME}")
-
 #### ------------------------------------- ####
 #### setting Main libraries include folder ####
 #### ------------------------------------- ####
